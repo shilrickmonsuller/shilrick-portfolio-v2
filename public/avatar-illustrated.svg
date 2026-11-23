@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Illustrated avatar of Shilrick Monsuller">
+  <title>Shilrick Monsuller</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2DD4BF"/>
+      <stop offset="1" stop-color="#0F766E"/>
+    </linearGradient>
+    <linearGradient id="suit" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#26406B"/>
+      <stop offset="1" stop-color="#172A4A"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F2C6A4"/>
+      <stop offset="1" stop-color="#E4AE88"/>
+    </linearGradient>
+    <clipPath id="c"><circle cx="256" cy="256" r="256"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#c)">
+    <rect width="512" height="512" fill="url(#bg)"/>
+    <circle cx="420" cy="90" r="120" fill="#fff" opacity=".08"/>
+
+    <!-- suit -->
+    <path d="M40 512 C46 430 92 392 168 372 L256 352 L344 372 C420 392 466 430 472 512 Z" fill="url(#suit)"/>
+    <!-- shirt -->
+    <path d="M206 362 L256 452 L306 362 L256 348 Z" fill="#fff"/>
+    <!-- tie -->
+    <path d="M244 384 L268 384 L276 512 L236 512 Z" fill="#1D4ED8"/>
+    <path d="M240 364 L272 364 L268 388 L244 388 Z" fill="#1E40AF"/>
+    <!-- lapels -->
+    <path d="M206 362 L256 470 L178 380 L196 360 Z" fill="#2E4D80"/>
+    <path d="M306 362 L256 470 L334 380 L316 360 Z" fill="#2E4D80"/>
+    <!-- pocket square -->
+    <path d="M346 456 L392 448 L394 458 L348 466 Z" fill="#fff"/>
+
+    <!-- neck -->
+    <path d="M222 310 L290 310 L294 368 Q256 388 218 368 Z" fill="#D99D78"/>
+
+    <!-- ears -->
+    <ellipse cx="160" cy="236" rx="18" ry="28" fill="#E4AE88"/>
+    <ellipse cx="352" cy="236" rx="18" ry="28" fill="#E4AE88"/>
+    <!-- head -->
+    <path d="M164 210 C164 136 206 104 256 104 C306 104 348 136 348 210 C348 282 310 336 256 338 C202 336 164 282 164 210 Z" fill="url(#skin)"/>
+    <!-- stubble shadow -->
+    <path d="M196 286 C214 320 236 332 256 334 C276 332 298 320 316 286 C300 300 280 306 256 306 C232 306 212 300 196 286 Z" fill="#C98F6E" opacity=".35"/>
+
+    <!-- hair: short, dark, slight lift at front -->
+    <path d="M160 214 C150 140 190 82 256 80 C318 78 362 120 354 214 C348 186 340 164 326 152 C300 150 268 144 246 132 C226 146 196 150 178 152 C168 168 164 190 160 214 Z" fill="#141414"/>
+    <path d="M246 132 C262 120 290 116 314 126 C300 128 280 132 262 140 Z" fill="#2A2A2A"/>
+
+    <!-- brows -->
+    <path d="M198 196 Q220 184 242 192" stroke="#141414" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M270 192 Q292 184 314 196" stroke="#141414" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <!-- smiling eyes -->
+    <path d="M204 222 Q220 210 236 222" stroke="#141414" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M276 222 Q292 210 308 222" stroke="#141414" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <!-- nose -->
+    <path d="M246 258 Q256 266 266 258" stroke="#C98F6E" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <!-- smile -->
+    <path d="M224 288 Q256 306 288 288" stroke="#8A4B3A" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <!-- cheeks -->
+    <ellipse cx="206" cy="262" rx="16" ry="9" fill="#F08C7A" opacity=".25"/>
+    <ellipse cx="306" cy="262" rx="16" ry="9" fill="#F08C7A" opacity=".25"/>
+  </g>
+</svg>
