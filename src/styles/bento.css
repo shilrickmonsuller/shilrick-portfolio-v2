@@ -79,7 +79,7 @@
   border-radius: 11px;
   background: var(--orange);
   color: var(--white);
-  box-shadow: 0 8px 18px -10px rgba(255, 122, 26, 0.9);
+  box-shadow: 0 8px 18px -10px rgba(20, 184, 166, 0.9);
   transition: transform var(--dur-med) var(--ease-spring);
 }
 .bento__card:hover .bento__icon { transform: translateY(-2px) rotate(-4deg); }
@@ -427,3 +427,4 @@
   .bento__badge-tag, .bento__review-work { font-size: 12px; }
   .bento__review-role { font-size: 12.5px; }
 }
+.bento__badge-ring svg { color: var(--navy); }

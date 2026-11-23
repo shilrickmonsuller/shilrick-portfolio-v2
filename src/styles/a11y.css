@@ -230,7 +230,7 @@
 :root[data-a11y-contrast='true'][data-theme='dark'] {
   --muted: rgba(237, 240, 246, 0.88);
   --line: rgba(255, 255, 255, 0.3);
-  --orange-ink: #FFB070;
+  --orange-ink: #5EEAD4;
 }
 
 /* Reduce motion: every animation and transition stops; drifting tracks hold. */

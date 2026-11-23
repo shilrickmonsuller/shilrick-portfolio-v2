@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { SealCheck, CaretRight, Play, Stack, Coffee } from '@/components/slab'
+import { SealCheck, Stack, ChatCircleText } from '@/components/slab'
 import { profile } from '@/data/profile'
 import QuickMenu from './QuickMenu'
 
@@ -10,8 +10,7 @@ import QuickMenu from './QuickMenu'
  *                (theme + accessibility) - the rail's identity block, laid flat
  *   HomeStats    three proof facts (profile.stats), each named by a glyph so
  *                it reads at a glance
- *   HomeExplore  one shelf card per rail view in a snap row, then the first
- *                testimonial as a video stage
+ *   HomeExplore  one shelf card per rail view in a snap row
  */
 
 export function HomeProfile() {
@@ -47,11 +46,10 @@ export function HomeStats() {
 }
 
 const TILES = [
-  { n: '01', label: 'Projects', to: '/projects', title: 'PLACEHOLDER - projects headline', desc: 'Tell me what to put here.', img: '/placeholders/project-1.jpg' },
-  { n: '02', label: 'Services', to: '/services', title: 'PLACEHOLDER - services headline', desc: 'Tell me what to put here.', Icon: Stack },
-  { n: '03', label: 'Showcase', to: '/showcase', title: 'PLACEHOLDER - your flagship', desc: 'Tell me what to put here.', Icon: Coffee, accent: true },
-  { n: '04', label: 'Testimonials', to: '/testimonials', title: 'PLACEHOLDER - testimonials headline', desc: 'Tell me what to put here.', img: '/placeholders/testimonial-1.jpg' },
-  { n: '05', label: 'About', to: '/about', title: `Hi, I'm ${profile.firstName}.`, desc: 'PLACEHOLDER - one line about you.', img: profile.avatarSrc },
+  { n: '01', label: 'Projects', to: '/projects', title: 'AI automation projects', desc: 'Multi-agent support, voice, wellness and content systems built with n8n.', img: '/work/workflow-1.jpg' },
+  { n: '02', label: 'Services', to: '/services', title: 'What I can automate for you', desc: 'Workflows, AI agents, CRM follow-ups and API integrations.', Icon: Stack },
+  { n: '03', label: 'About', to: '/about', title: `Hi, I'm ${profile.firstName}.`, desc: 'Engineering roots. Automation future.', img: profile.avatarSrc },
+  { n: '04', label: 'Contact', to: '/contact', title: "Let's build something smarter.", desc: 'Tell me what you want to automate.', Icon: ChatCircleText, accent: true },
 ] as const
 
 export function HomeExplore() {
@@ -79,26 +77,6 @@ export function HomeExplore() {
         ))}
       </ul>
 
-      {/* A header that links carries its chevron on the title itself. */}
-      <div className="hsec">
-        <h2 className="hsec__title">
-          <Link to="/testimonials" className="hsec__link">
-            What clients say
-            <CaretRight size={16} weight="bold" aria-hidden="true" />
-          </Link>
-        </h2>
-      </div>
-      <Link to="/testimonials" className="hproof" aria-label="Client testimonial. PLACEHOLDER - a one-line teaser for your best testimonial.">
-        <span className="hproof__stage">
-          <img src="/placeholders/testimonial-1.jpg" alt="" loading="lazy" />
-          <span className="hproof__play" aria-hidden="true"><Play size={20} weight="fill" /></span>
-          <span className="hproof__dur" aria-hidden="true">0:00</span>
-        </span>
-        <span className="hproof__copy">
-          <span className="hproof__title">PLACEHOLDER - tell me what to put here: a one-line teaser for your best testimonial.</span>
-          <span className="hproof__meta">PLACEHOLDER - client role</span>
-        </span>
-      </Link>
     </>
   )
 }

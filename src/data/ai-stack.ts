@@ -6,7 +6,7 @@
  * render whatever shape they find here, so swapping in content is a data edit
  * and never a JSX edit. Keep the exported names and types stable.
  *
- * Every value below is a PLACEHOLDER. Shape rules:
+ * Shape rules:
  * - The root is you. Its children are the categories (branches).
  * - A branch with `status` is itself a system; a branch without one is a
  *   group whose children are the systems.
@@ -17,25 +17,19 @@
 
 import {
   Sparkle,
-  Coffee,
-  Robot,
-  Article,
-  FilmSlate,
-  UsersThree,
-  Database,
-  SlackLogo,
-  MagnifyingGlass,
+  Headset,
+  Microphone,
+  ForkKnife,
+  LinkedinLogo,
   ChatCircleDots,
-  FlowArrow,
-  PhoneCall,
-  Browser,
-  Broadcast,
-  Timer,
+  AirplaneTilt,
+  Heartbeat,
+  Article,
 } from '@/components/slab'
 import type { Icon } from '@/components/slab'
 import { profile } from '@/data/profile'
 
-export type StackStatus = 'Live' | 'Internal' | 'Beta'
+export type StackStatus = 'Live' | 'Internal' | 'Beta' | 'Demo'
 
 /** A vendor mark, masked to a single ink colour so the row reads as one set
  *  rather than a rainbow of brand palettes. Only marks that already exist in
@@ -56,143 +50,82 @@ export type StackNode = {
   children?: StackNode[]
 }
 
-const ANTHROPIC: StackLogo = { src: '/icons/anthropic.svg', name: 'Anthropic' }
 const OPENAI: StackLogo = { src: '/icons/openai.svg', name: 'OpenAI' }
-const SLACK: StackLogo = { src: '/icons/slack.svg', name: 'Slack' }
-const NOUS: StackLogo = { src: '/icons/nousresearch.svg', name: 'Nous Research' }
 
-const WHAT = 'PLACEHOLDER - tell me what to put here: one plain line on what this does.'
-const STACK = 'PLACEHOLDER - model, tools, where it runs'
-
-/** Single root: you. Branches are the categories. */
+/** Single root: you. Branches are the categories. Status 'Demo' marks an
+ *  independent project built to show the approach, not a client system. */
 export const aiStack: StackNode = {
   id: 'root',
   Icon: Sparkle,
   name: profile.name,
-  what: 'PLACEHOLDER - tell me what to put here: one line on the systems you build and run.',
-  stack: 'PLACEHOLDER - your brand',
+  what: 'Hands-on AI automation projects that solve real business problems with agents, integrations and automated processes.',
+  stack: 'n8n · OpenAI · GoHighLevel · APIs',
   children: [
     {
-      id: 'project-a',
-      Icon: Coffee,
-      logos: [ANTHROPIC],
-      name: 'Project A',
-      what: WHAT,
-      stack: STACK,
-      status: 'Live',
-    },
-    {
-      id: 'category-one',
-      Icon: Robot,
-      name: 'Category One',
-      what: 'PLACEHOLDER - tell me what to put here: what the systems in this group have in common.',
-      children: [
-        {
-          id: 'project-b',
-          Icon: Article,
-          logos: [ANTHROPIC],
-          name: 'Project B',
-          what: WHAT,
-          stack: STACK,
-          status: 'Internal',
-        },
-        {
-          id: 'project-c',
-          Icon: FilmSlate,
-          logos: [OPENAI],
-          name: 'Project C',
-          what: WHAT,
-          stack: STACK,
-          status: 'Internal',
-        },
-        {
-          id: 'project-d',
-          Icon: UsersThree,
-          logos: [ANTHROPIC],
-          name: 'Project D',
-          what: WHAT,
-          stack: STACK,
-          status: 'Internal',
-        },
-      ],
-    },
-    {
-      id: 'category-two',
-      Icon: Database,
-      name: 'Category Two',
-      what: 'PLACEHOLDER - tell me what to put here: what the systems in this group have in common.',
-      children: [
-        {
-          id: 'project-e',
-          Icon: SlackLogo,
-          logos: [ANTHROPIC, SLACK],
-          name: 'Project E',
-          what: WHAT,
-          stack: STACK,
-          status: 'Live',
-        },
-        {
-          id: 'project-f',
-          Icon: MagnifyingGlass,
-          logos: [ANTHROPIC],
-          name: 'Project F',
-          what: WHAT,
-          stack: STACK,
-          status: 'Live',
-        },
-      ],
-    },
-    {
-      id: 'category-three',
+      id: 'sales',
       Icon: ChatCircleDots,
-      name: 'Category Three',
-      what: 'PLACEHOLDER - tell me what to put here: what the systems in this group have in common.',
+      name: 'Customer support & sales',
+      what: 'Turn every customer inquiry into a business opportunity, 24/7.',
       children: [
         {
-          id: 'project-g',
-          Icon: FlowArrow,
-          logos: [ANTHROPIC],
-          name: 'Project G',
-          what: WHAT,
-          stack: STACK,
-          status: 'Live',
-        },
-        {
-          id: 'project-h',
-          Icon: PhoneCall,
-          logos: [ANTHROPIC],
-          name: 'Project H',
-          what: WHAT,
-          stack: STACK,
-          status: 'Beta',
-        },
-        {
-          id: 'project-i',
-          Icon: Browser,
-          logos: [ANTHROPIC],
-          name: 'Project I',
-          what: WHAT,
-          stack: STACK,
-          status: 'Live',
+          id: 'support-agent',
+          Icon: Headset,
+          logos: [OPENAI],
+          name: 'Multi-Agent Support & Sales',
+          what: 'AI agents answer customers, qualify leads, book appointments and follow up across Messenger and other channels. Built for plumbing, electrical and HVAC businesses.',
+          stack: 'n8n · GoHighLevel · OpenAI · Supabase · PostgreSQL · Google Drive · Webhooks',
+          status: 'Demo',
         },
       ],
     },
     {
-      id: 'project-j',
-      Icon: Broadcast,
-      logos: [NOUS],
-      name: 'Project J',
-      what: WHAT,
-      stack: STACK,
-      status: 'Live',
+      id: 'voice',
+      Icon: AirplaneTilt,
+      name: 'Voice assistants',
+      what: 'Voice conversations turned into finished work, without manual research.',
       children: [
         {
-          id: 'project-k',
-          Icon: Timer,
-          name: 'Project K',
-          what: WHAT,
-          stack: STACK,
-          status: 'Live',
+          id: 'travel-voice',
+          Icon: Microphone,
+          logos: [OPENAI],
+          name: 'AI Voice Travel Assistant',
+          what: 'Understands travel preferences by voice, pulls live flight, hotel and activity data, and emails a personalized itinerary.',
+          stack: 'ElevenLabs · n8n · OpenAI · Gmail · Travel APIs · Webhooks',
+          status: 'Demo',
+        },
+      ],
+    },
+    {
+      id: 'wellness',
+      Icon: Heartbeat,
+      name: 'Coaching & tracking',
+      what: 'Personal support that scales, delivered where people already chat.',
+      children: [
+        {
+          id: 'nutritionist',
+          Icon: ForkKnife,
+          logos: [OPENAI],
+          name: 'AI Nutritionist & Wellness Coach',
+          what: 'Turns food photos, voice notes and text into calorie estimates, logs meals in Google Sheets and coaches through Telegram.',
+          stack: 'n8n · OpenAI GPT · Telegram Bot API · Google Drive',
+          status: 'Demo',
+        },
+      ],
+    },
+    {
+      id: 'content',
+      Icon: Article,
+      name: 'Content & marketing',
+      what: 'From content ideas to published posts, with tracking.',
+      children: [
+        {
+          id: 'linkedin-content',
+          Icon: LinkedinLogo,
+          logos: [OPENAI],
+          name: 'LinkedIn Content Auto-Publishing',
+          what: 'Researches trending topics, writes and evaluates posts and images with AI agents, then publishes to LinkedIn and tracks status in Google Sheets.',
+          stack: 'n8n · OpenAI GPT · DALL·E · Tavily · LinkedIn API · Google Sheets',
+          status: 'Demo',
         },
       ],
     },

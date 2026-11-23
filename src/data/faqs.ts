@@ -9,22 +9,22 @@ export type QA = { q: string; a: string }
 export const FAQS: QA[] = [
   {
     q: 'What do you do?',
-    a: 'PLACEHOLDER - tell me what to put here: the kinds of work you take on, and who it is usually for.',
+    a: 'I build AI automations: n8n workflows, AI agents and chatbots, GoHighLevel CRM follow-ups and API integrations. The goal is less repetitive work and faster responses for your business.',
   },
   {
-    q: 'How fast can you start?',
-    a: 'PLACEHOLDER - tell me what to put here: your usual lead time for small fixes vs. larger projects, and your working hours.',
+    q: 'What tools do you work with?',
+    a: 'n8n is my primary platform. I connect it with OpenAI, GoHighLevel, Supabase and PostgreSQL, Google Workspace, Telegram, ElevenLabs and any service with a REST API or webhooks.',
   },
   {
-    q: 'How much do you charge?',
-    a: 'PLACEHOLDER - tell me what to put here: how you price (hourly, per project, retainer) and how a quote is put together.',
+    q: 'What is your background?',
+    a: 'I am a Chemical Engineer (BS, Mindanao State University) with over ten years of leading industrial operations. That taught me to analyze processes, troubleshoot and build systems that hold up.',
   },
   {
     q: 'Where are you based?',
-    a: 'PLACEHOLDER - tell me what to put here: your location or timezone, and which client timezones you overlap with.',
+    a: 'Iligan City, Philippines (GMT+8). I work remotely and can overlap with clients in Asia, Australia, Europe and US time zones.',
   },
   {
     q: 'What happens after I write?',
-    a: 'PLACEHOLDER - tell me what to put here: how fast you reply and what the next step looks like.',
+    a: 'I reply by email, ask a few questions about your process and tools, then suggest how I would automate it before any work starts.',
   },
 ]

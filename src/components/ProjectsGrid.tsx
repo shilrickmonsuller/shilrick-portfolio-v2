@@ -1,10 +1,8 @@
 import { Fragment, useCallback, useEffect, useRef, useState, type ComponentType, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
-import { ArrowUpRight, X, Ticket, Robot, FlowArrow, CursorClick } from '@/components/slab'
-import { FlowIcon, PlanIcon, GlobeIcon, SparkIcon, DeviceIcon } from './ProjectIcons'
-import { AutomationsPanel, PlanPanel, TicketingPanel, FrameworkPanel, WorkflowPanel, BarrelPanel, AIWindow, AppsWindow } from './ProjectPanels'
-import { gymFunnel, bookingFunnel, websiteFunnel, type Funnel } from '@/data/funnels'
-import { mobileApps } from '@/data/projects'
+import { ArrowUpRight, X, Microphone, ForkKnife, LinkedinLogo, CursorClick } from '@/components/slab'
+import { FlowIcon, PlanIcon, SparkIcon } from './ProjectIcons'
+import { AutomationsPanel, SupportPanel, VoicePanel, NutritionPanel, LinkedInPanel, AIWindow } from './ProjectPanels'
 import { aiStack, type StackNode } from '@/data/ai-stack'
 import { useIsPhone } from '@/hooks/useMediaQuery'
 
@@ -35,45 +33,28 @@ type Project = {
   cat: Cat
 }
 
-type Cat = 'work' | 'sites' | 'apps' | 'ai'
+type Cat = 'work' | 'ai'
 const FILTERS: { key: Cat | 'all'; label: string }[] = [
   { key: 'all', label: 'All' },
-  { key: 'work', label: 'Work' },
-  { key: 'sites', label: 'Sites' },
-  { key: 'apps', label: 'Apps' },
-  { key: 'ai', label: 'AI' },
+  { key: 'work', label: 'Business' },
+  { key: 'ai', label: 'AI agents' },
 ]
 
-/** Example tool marks, from public/icons. Swap for what you build with. */
+/** Tool marks, from public/icons. */
 const GHL = '/icons/gohighlevel.png'
-const CLAUDE_CODE = '/icons/claude-code-logo.png'
-const CODEX = '/icons/ai/codex.svg'
-const HERMES = '/icons/ai/hermes.svg'
-const PLAY = '/icons/ai/googleplay.svg'
-const CHROME = '/icons/ai/googlechrome.svg'
-const EXPO = '/icons/ai/expo.svg'
+const N8N = '/icons/ai/n8n.svg'
+const OPENAI = '/icons/openai.svg'
+const ELEVENLABS = '/icons/ai/elevenlabs.svg'
+const TELEGRAM = '/icons/ai/telegram.svg'
+const LINKEDIN = '/icons/ai/linkedin-color.svg'
 
-const WF_SHOTS = ['project-1.jpg', 'project-2.jpg', 'project-3.jpg', 'project-4.jpg'].map(
-  (f) => `/placeholders/${f}`,
-)
+const WF_SHOTS = [1, 2, 3, 4].map((n) => `/work/workflow-${n}.jpg`)
 
-const FUNNEL_SHOTS = [gymFunnel[0], bookingFunnel[0], websiteFunnel[0]].filter(Boolean)
-const thumbSrc = (f: Funnel) => `/${f.dir ?? 'funnels'}/thumbs/${f.file.replace('.html', '.jpeg')}`
-
-const APP_SHOTS = [
-  ...mobileApps.map((a) => a.imageSrc).filter((s): s is string => !!s),
-  '/placeholders/extension-1.jpg',
-  '/placeholders/extension-2.jpg',
-]
-
-const BUILD_DESC = 'PLACEHOLDER - tell me what to put here: two lines on what this project is and the result it got.'
-
-/** The three featured builds: each its own card in the stack, each its own
- *  pop-up. */
+/** Projects 02-04: each its own card in the stack, each its own pop-up. */
 const BUILDS: Project[] = [
-  { id: 'ticketing', cat: 'work', index: '03', kicker: 'Placeholder category', title: 'Featured Project One', desc: BUILD_DESC, Icon: () => <Ticket size={20} weight="duotone" />, logos: [GHL], eyebrow: 'Featured build', Section: TicketingPanel, Preview: () => null },
-  { id: 'framework', cat: 'ai', index: '04', kicker: 'Placeholder category', title: 'Featured Project Two', desc: BUILD_DESC, Icon: () => <Robot size={20} weight="duotone" />, logos: [CLAUDE_CODE], eyebrow: 'Featured build', Section: FrameworkPanel, Preview: () => null },
-  { id: 'workflow', cat: 'ai', index: '05', kicker: 'Placeholder category', title: 'Featured Project Three', desc: BUILD_DESC, Icon: () => <FlowArrow size={20} weight="duotone" />, logos: [CLAUDE_CODE, CODEX, HERMES], eyebrow: 'Featured build', Section: WorkflowPanel, Preview: () => null },
+  { id: 'voice', cat: 'ai', index: '03', kicker: 'Project 02 · Voice AI', title: 'AI Voice Travel Assistant', desc: 'Voice conversations become personalized itineraries, emailed to the customer.', Icon: () => <Microphone size={20} weight="duotone" />, logos: [ELEVENLABS], eyebrow: 'Project', Section: VoicePanel, Preview: () => null },
+  { id: 'nutrition', cat: 'ai', index: '04', kicker: 'Project 03 · Telegram bot', title: 'AI Nutritionist & Wellness Coach', desc: 'Food photos, voice and text become calorie logs and coaching on Telegram.', Icon: () => <ForkKnife size={20} weight="duotone" />, logos: [TELEGRAM], eyebrow: 'Project', Section: NutritionPanel, Preview: () => null },
+  { id: 'linkedin', cat: 'work', index: '05', kicker: 'Project 04 · Content', title: 'LinkedIn Content Auto-Publishing', desc: 'AI agents research, write, illustrate and publish LinkedIn posts.', Icon: () => <LinkedinLogo size={20} weight="duotone" />, logos: [LINKEDIN], eyebrow: 'Project', Section: LinkedInPanel, Preview: () => null },
 ]
 
 const leaves = (n: StackNode): StackNode[] => (n.children?.length ? n.children.flatMap(leaves) : [n])
@@ -95,17 +76,17 @@ function WorkflowsPreview() {
   )
 }
 
-/** A paper mock of the plan document, the way SamplePlan previews it. */
+/** A paper mock of the project's flow: inquiry to booking. */
 function PlanPreview() {
   return (
     <div className="bento__media bento__doc" aria-hidden="true">
-      <span className="bento__doc-eyebrow">Placeholder document</span>
-      <span className="bento__doc-title">Your document title here.</span>
+      <span className="bento__doc-eyebrow">Project 01 · Support & sales</span>
+      <span className="bento__doc-title">Every inquiry, answered and booked.</span>
       <span className="bento__doc-flow">
-        <i>Step</i>
-        <i>Step</i>
-        <i>Step?</i>
-        <i className="is-on">Result</i>
+        <i>Message</i>
+        <i>AI agent</i>
+        <i>Qualified?</i>
+        <i className="is-on">Booked</i>
       </span>
       <span className="bento__doc-line" />
       <span className="bento__doc-line bento__doc-line--short" />
@@ -113,18 +94,6 @@ function PlanPreview() {
   )
 }
 
-/** The three builds as Open Builds rows: plate, eyebrow, title, arrow. */
-function FunnelsPreview() {
-  return (
-    <div className="bento__media bento__fan" aria-hidden="true">
-      {FUNNEL_SHOTS.map((f, i) => (
-        <span key={f.file} className="bento__photo bento__photo--page" style={{ ['--i' as string]: i }}>
-          <img src={thumbSrc(f)} alt="" loading="lazy" decoding="async" />
-        </span>
-      ))}
-    </div>
-  )
-}
 
 function AIPreview() {
   const half = Math.ceil(AI_LEAVES.length / 2)
@@ -147,26 +116,11 @@ function AIPreview() {
   )
 }
 
-function AppsPreview() {
-  return (
-    <div className="bento__media bento__reel bento__reel--row" aria-hidden="true">
-      <div className="bento__reel-track">
-        {[...APP_SHOTS, ...APP_SHOTS].map((src, i) => (
-          <span key={i} className="bento__shot bento__shot--app">
-            <img src={src} alt="" loading="lazy" decoding="async" />
-          </span>
-        ))}
-      </div>
-    </div>
-  )
-}
 
 const PROJECTS: Project[] = [
-  { id: 'workflows', cat: 'work', index: '01', title: 'Project Title', desc: 'PLACEHOLDER - tell me what to put here: what these screens show.', Icon: FlowIcon, logos: [GHL], eyebrow: 'Screenshots', Section: AutomationsPanel, span: 2, Preview: WorkflowsPreview },
-  { id: 'plan', cat: 'work', index: '02', title: 'Sample Document', desc: 'PLACEHOLDER - tell me what to put here: the document this opens.', Icon: PlanIcon, logos: [GHL], eyebrow: 'Sample document', Section: PlanPanel, Preview: PlanPreview },
-  { id: 'funnels', cat: 'sites', index: '06', title: 'Pages and sites', desc: 'PLACEHOLDER - the pages in this reel. Spin the reel.', Icon: GlobeIcon, logos: [GHL], eyebrow: 'Pages and sites', Section: BarrelPanel, Preview: FunnelsPreview },
-  { id: 'ai', cat: 'ai', index: '07', title: 'Your systems title here', desc: 'PLACEHOLDER - tell me what to put here: the systems you run.', Icon: SparkIcon, logos: [CLAUDE_CODE, CODEX, HERMES], eyebrow: 'Your systems', Section: AIWindow, Preview: AIPreview },
-  { id: 'apps', cat: 'apps', index: '08', title: 'Apps and tools', desc: 'PLACEHOLDER - tell me what to put here: the apps and tools you ship.', Icon: DeviceIcon, logos: [PLAY, EXPO, CHROME], eyebrow: 'Your apps', Section: AppsWindow, span: 2, Preview: AppsPreview },
+  { id: 'workflows', cat: 'work', index: '01', title: 'The workflows', desc: 'The n8n canvases behind each project. Open one to see every node.', Icon: FlowIcon, logos: [N8N], eyebrow: 'Screenshots', Section: AutomationsPanel, span: 2, Preview: WorkflowsPreview },
+  { id: 'plan', cat: 'work', index: '02', title: 'Multi-Agent Support & Sales', desc: 'AI agents that answer, qualify, book and follow up, 24/7.', Icon: PlanIcon, logos: [N8N, GHL, OPENAI], eyebrow: 'Project 01', Section: SupportPanel, Preview: PlanPreview },
+  { id: 'ai', cat: 'ai', index: '06', title: 'All projects at a glance', desc: 'What each system does and what it is built with.', Icon: SparkIcon, logos: [N8N, OPENAI], eyebrow: 'Projects', Section: AIWindow, Preview: AIPreview },
 ]
 
 /** The icon tile, or the real marks stacked horizontally in its place. */
@@ -300,9 +254,9 @@ export default function ProjectsGrid() {
       <header className="pgrid__head">
         <span className="pgrid__eyebrow">Projects</span>
         <h1 className="pgrid__title" id="projects-title">
-          Your projects headline goes right here.
+          AI automation projects.
         </h1>
-        <p className="pgrid__lede">PLACEHOLDER - tell me what to put here: one line on the work below. Open a card to see it full size.</p>
+        <p className="pgrid__lede">Hands-on AI automation projects built with n8n, AI agents and integrations. Open a card to see it full size.</p>
       </header>
 
       {phone && (

@@ -4,7 +4,6 @@ import { useMemo } from 'react'
  * ToolsMarquee
  *
  * Horizontally scrolling strip of brand logos + labels for the tools you work with.
- * PLACEHOLDER - swap the list below for your own tools (icons live in public/icons/).
  * The strip lives on the cream shader page, NOT inside a dark section.
  *
  * Implementation notes:
@@ -38,17 +37,19 @@ type Tool = {
 }
 
 export const tools: Tool[] = [
-  { name: 'Claude Code',          iconPath: '/icons/claude-code-logo.png' },
-  { name: 'Codex',                iconPath: '/icons/codex.svg',           color: '#000000' },
-  { name: 'Cursor',               iconPath: '/icons/cursor.svg',          color: '#0F172A' },
-  { name: 'Hermes AI',            iconPath: '/icons/nousresearch.svg',    color: '#18181B' },
-  { name: 'VS Code',              iconPath: '/icons/vscode.svg' },
+  { name: 'n8n',                  iconPath: '/icons/ai/n8n.svg',          color: '#EA4B71' },
   { name: 'GoHighLevel',          iconPath: '/icons/gohighlevel.png' },
-  { name: 'Lightspeed X-Series',  iconPath: '/icons/lightspeed.png' },
-  { name: 'Google Workspace',     iconPath: '/icons/googleworkspace.svg' },
-  { name: 'Zendesk',              iconPath: '/icons/zendesk.svg',         color: '#03363D' },
-  { name: 'Intercom',             iconPath: '/icons/intercom.svg',        color: '#1F8DED' },
-  { name: 'Slack',                iconPath: '/icons/slack.svg',           color: '#611F69' },
+  { name: 'OpenAI',               iconPath: '/icons/openai.svg',          color: '#000000' },
+  { name: 'Supabase',             iconPath: '/icons/ai/supabase.svg',     color: '#3FCF8E' },
+  { name: 'PostgreSQL',           iconPath: '/icons/ai/postgresql.svg',   color: '#4169E1' },
+  { name: 'ElevenLabs',           iconPath: '/icons/ai/elevenlabs.svg',   color: '#000000' },
+  { name: 'Telegram',             iconPath: '/icons/ai/telegram.svg',     color: '#26A5E4' },
+  { name: 'Gmail',                iconPath: '/icons/ai/gmail.svg',        color: '#EA4335' },
+  { name: 'Google Sheets',        iconPath: '/icons/ai/googlesheets.svg', color: '#34A853' },
+  { name: 'Google Drive',         iconPath: '/icons/ai/googledrive.svg',  color: '#4285F4' },
+  { name: 'LinkedIn',             iconPath: '/icons/ai/linkedin-color.svg', color: '#0A66C2' },
+  { name: 'Python',               iconPath: '/icons/ai/python.svg',       color: '#3776AB' },
+  { name: 'GitHub',               iconPath: '/icons/ai/github.svg',       color: '#181717' },
 ]
 
 export default function ToolsMarquee() {

@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react'
-import { Ticket, Robot, FlowArrow, type Icon } from '@/components/slab'
+import { Headset, Microphone, ForkKnife, LinkedinLogo, type Icon } from '@/components/slab'
 import { lazy, Suspense } from 'react'
 import WorkflowSamples from './WorkflowSamples'
 import AIStackGrid from './AIStackGrid'
@@ -61,7 +61,7 @@ export function BarrelPanel() {
 /** The systems as a logo-first grid, in a scrolling window. */
 export function AIWindow() {
   return (
-    <SectionWindow label="Your systems">
+    <SectionWindow label="AI automation projects">
       <AIStackGrid />
     </SectionWindow>
   )
@@ -74,41 +74,32 @@ export function AppsWindow() {
   )
 }
 
-/** The plan document, full height, straight away. */
-export function PlanPanel() {
-  return (
-    <div className="ppanel ppanel--frame">
-      <FrameBar
-        host="yourdomain.com"
-        path="/sample-plan"
-      />
-      <LiveFrame src="/placeholders/sample-plan.html" title="Sample document" />
-    </div>
-  )
-}
-
 /** `src` is a local page framed in the panel; `path` is what the fake
- *  address bar shows. Point these at your own pages. */
+ *  address bar shows. Each case study lives in public/projects/. */
 type Build = { id: string; label: string; src: string; path: string; Icon: Icon }
 
+const HOST = 'shilrick-monsuller'
+
 const BUILDS: Build[] = [
-  { id: 'ticketing', label: 'Featured Project One', src: '/placeholders/sample-plan.html?doc=1', path: '/featured-one', Icon: Ticket },
-  { id: 'framework', label: 'Featured Project Two', src: '/placeholders/sample-plan.html?doc=2', path: '/featured-two', Icon: Robot },
-  { id: 'workflow', label: 'Featured Project Three', src: '/placeholders/sample-plan.html?doc=3', path: '/featured-three', Icon: FlowArrow },
+  { id: 'support', label: 'Multi-Agent Support & Sales', src: '/projects/multi-agent-support.html', path: '/projects/multi-agent-support', Icon: Headset },
+  { id: 'voice', label: 'AI Voice Travel Assistant', src: '/projects/voice-travel-assistant.html', path: '/projects/voice-travel-assistant', Icon: Microphone },
+  { id: 'nutrition', label: 'AI Nutritionist & Wellness Coach', src: '/projects/ai-nutritionist.html', path: '/projects/ai-nutritionist', Icon: ForkKnife },
+  { id: 'linkedin', label: 'LinkedIn Content Auto-Publishing', src: '/projects/linkedin-content.html', path: '/projects/linkedin-content', Icon: LinkedinLogo },
 ]
 
 /** One build, framed, open on arrival. */
 function BuildPanel({ build }: { build: Build }) {
   return (
     <div className="ppanel ppanel--frame">
-      <FrameBar host="yourdomain.com" path={build.path} />
+      <FrameBar host={HOST} path={build.path} />
       <LiveFrame src={build.src} title={build.label} />
     </div>
   )
 }
-export const TicketingPanel = () => <BuildPanel build={BUILDS[0]} />
-export const FrameworkPanel = () => <BuildPanel build={BUILDS[1]} />
-export const WorkflowPanel = () => <BuildPanel build={BUILDS[2]} />
+export const SupportPanel = () => <BuildPanel build={BUILDS[0]} />
+export const VoicePanel = () => <BuildPanel build={BUILDS[1]} />
+export const NutritionPanel = () => <BuildPanel build={BUILDS[2]} />
+export const LinkedInPanel = () => <BuildPanel build={BUILDS[3]} />
 
 function FrameBar({ host, path }: { host: string; path: string }) {
   return (

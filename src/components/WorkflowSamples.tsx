@@ -22,13 +22,13 @@ import { X } from '@/components/slab'
 type Sample = { file: string; label: string }
 
 const SAMPLES: Sample[] = [
-  { file: 'project-1.jpg', label: 'Project Screenshot 1' },
-  { file: 'project-2.jpg', label: 'Project Screenshot 2' },
-  { file: 'project-3.jpg', label: 'Project Screenshot 3' },
-  { file: 'project-4.jpg', label: 'Project Screenshot 4' },
+  { file: 'workflow-1.jpg', label: 'Multi-Agent Customer Support & Sales' },
+  { file: 'workflow-2.jpg', label: 'AI Voice Travel Assistant' },
+  { file: 'workflow-3.jpg', label: 'AI Nutritionist & Wellness Coach' },
+  { file: 'workflow-4.jpg', label: 'LinkedIn Content Auto-Publishing' },
 ]
 
-const srcOf = (s: Sample) => `/placeholders/${encodeURIComponent(s.file)}`
+const srcOf = (s: Sample) => `/work/${encodeURIComponent(s.file)}`
 
 export default function WorkflowSamples() {
   const doubled = useMemo(() => [...SAMPLES, ...SAMPLES], [])
@@ -64,7 +64,7 @@ export default function WorkflowSamples() {
   return (
     <section className="wfs" id="workflow-samples" aria-labelledby="wfs-heading" data-reveal>
       <p className="wfs__caption" id="wfs-heading">
-        PLACEHOLDER - tell me what to put here: one line on what these screenshots show.
+        The n8n workflows behind my AI automation projects. Click one to see it full size.
       </p>
 
       <div className="wfs__strip">

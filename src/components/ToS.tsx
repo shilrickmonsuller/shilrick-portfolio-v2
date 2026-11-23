@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { profile } from '@/data/profile'
 
 /**
- * Terms of Service - PLACEHOLDER. Legal text has to fit YOUR business, so
+ * Terms of Service. Legal text has to fit YOUR business, so
  * none is supplied. Paste your own terms into the sections below.
  */
 export default function ToS() {
@@ -22,20 +22,20 @@ export default function ToS() {
         </button>
 
         <h1 className="legal-page__title">Terms of Service</h1>
-        <p className="legal-page__updated">Last updated: PLACEHOLDER date</p>
+        <p className="legal-page__updated">Last updated: November 23, 2026</p>
 
         <div className="legal-page__body">
           <h2>Using this site</h2>
-          <p>PLACEHOLDER - tell me what to put here: the basic terms for visiting this site.</p>
+          <p>This site presents my work and services. You are welcome to browse it and get in touch.</p>
 
           <h2>Work and payment</h2>
-          <p>PLACEHOLDER - tell me what to put here: how projects are scoped, billed and delivered.</p>
+          <p>Every project is scoped and agreed in writing before work starts, either directly or through a platform such as Upwork or OnlineJobs.ph, whose terms then apply.</p>
 
           <h2>Ownership</h2>
-          <p>PLACEHOLDER - tell me what to put here: who owns the work and the content on this site.</p>
+          <p>The text, screenshots and projects shown here are my own. The site design is based on the BrewedOps portfolio template, used under its license. Tool logos belong to their owners.</p>
 
           <h2>Liability</h2>
-          <p>PLACEHOLDER - tell me what to put here: your limits of liability.</p>
+          <p>The information on this site is provided as is, without warranties of any kind.</p>
 
           <h2>Contact</h2>
           <p>
