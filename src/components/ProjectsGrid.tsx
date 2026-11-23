@@ -2,6 +2,8 @@ import { Fragment, useCallback, useEffect, useRef, useState, type ComponentType,
 import { createPortal } from 'react-dom'
 import { ArrowUpRight, X, Microphone, ForkKnife, LinkedinLogo, CursorClick } from '@/components/slab'
 import { FlowIcon, PlanIcon, SparkIcon, DeviceIcon } from './ProjectIcons'
+import PhoneDemo, { DEMO_APPS } from './PhoneDemo'
+import '@/styles/phone-demo.css'
 import { AutomationsPanel, SupportPanel, VoicePanel, NutritionPanel, LinkedInPanel, AIWindow, AppsWindow } from './ProjectPanels'
 import { aiStack, type StackNode } from '@/data/ai-stack'
 import { useIsPhone } from '@/hooks/useMediaQuery'
@@ -51,7 +53,6 @@ const LINKEDIN = '/icons/ai/linkedin-color.svg'
 
 const WF_SHOTS = [1, 2, 3, 4].map((n) => `/work/workflow-${n}.jpg`)
 const CLAUDE = '/icons/ai/claude-color.svg'
-const APP_SHOTS = ['/work/app-a-day-with-jesus-phone.jpg', '/work/app-tuonta-phone.jpg']
 
 /** Projects 02-04: each its own card in the stack, each its own pop-up. */
 const BUILDS: Project[] = [
@@ -100,14 +101,9 @@ function PlanPreview() {
 
 function AppsPreview() {
   return (
-    <div className="bento__media bento__reel bento__reel--row" aria-hidden="true">
-      <div className="bento__reel-track">
-        {[...APP_SHOTS, ...APP_SHOTS, ...APP_SHOTS, ...APP_SHOTS].map((src, i) => (
-          <span key={i} className="bento__shot bento__shot--app">
-            <img src={src} alt="" loading="lazy" decoding="async" />
-          </span>
-        ))}
-      </div>
+    <div className="bento__media pgrid__phones" aria-hidden="true">
+      <PhoneDemo app={DEMO_APPS['A Day With Jesus']} size="sm" />
+      <PhoneDemo app={DEMO_APPS.TUONTA} size="sm" offset={1100} />
     </div>
   )
 }

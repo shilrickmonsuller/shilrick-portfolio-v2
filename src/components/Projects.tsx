@@ -1,4 +1,6 @@
 import { ArrowUpRight } from '@/components/slab'
+import PhoneDemo, { DEMO_APPS } from './PhoneDemo'
+import '@/styles/phone-demo.css'
 import { mobileApps, type AppProject } from '@/data/projects'
 import AIStack from '@/components/AIStack'
 import Flagship from '@/components/Flagship'
@@ -10,8 +12,10 @@ function AppCard({ app }: { app: AppProject }) {
       className="app-card"
       style={{ ['--app-color' as string]: app.accentColor }}
     >
-      <div className="app-card__img-wrap">
-        {app.imageSrc ? (
+      <div className={`app-card__img-wrap${DEMO_APPS[app.name] ? ' app-card__img-wrap--phone' : ''}`}>
+        {DEMO_APPS[app.name] ? (
+          <PhoneDemo app={DEMO_APPS[app.name]} offset={app.name === 'TUONTA' ? 1100 : 0} />
+        ) : app.imageSrc ? (
           <img
             className="app-card__img"
             src={app.imageSrc}
