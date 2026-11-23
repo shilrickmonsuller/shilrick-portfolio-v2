@@ -1,5 +1,6 @@
 import { ArrowUpRight } from '@/components/slab'
-import PhoneDemo, { DEMO_APPS } from './PhoneDemo'
+import { useState, type CSSProperties } from 'react'
+import PhoneDemo, { DEMO_APPS, HOLD, type DemoApp } from './PhoneDemo'
 import '@/styles/phone-demo.css'
 import { mobileApps, type AppProject } from '@/data/projects'
 import AIStack from '@/components/AIStack'
@@ -82,15 +83,59 @@ export function AIStackSection() {
   )
 }
 
+/** A web app as one compact row: the phone plays its tabs on the left, and
+ *  on the right each tab's one-liner lights up as the phone reaches it. */
+function AppShowcase({ app, demo, index }: { app: AppProject; demo: DemoApp; index: number }) {
+  const [tab, setTab] = useState(0)
+  return (
+    <li className="appx" style={{ '--app-color': app.accentColor, '--k': index, '--hold': `${HOLD}ms` } as CSSProperties}>
+      <div className="appx__stage">
+        <PhoneDemo app={demo} offset={index * 1100} onIndex={setTab} />
+      </div>
+      <div className="appx__info">
+        <span className="appx__badge">{app.badge}</span>
+        <h3 className="appx__name">{app.name}</h3>
+        <p className="appx__tagline">{app.tagline}</p>
+        <ol className="appx__tabs" role="list">
+          {demo.tabs.map((t, j) => (
+            <li key={t} className={`appx__tab${j === tab ? ' is-on' : ''}`} style={{ '--j': j } as CSSProperties}>
+              <span className="appx__tab-name">{t}</span>
+              <span className="appx__tab-note">{demo.notes[j]}</span>
+              {j === tab && <span className="appx__tab-bar" aria-hidden="true" />}
+            </li>
+          ))}
+        </ol>
+        <div className="appx__foot">
+          <ul className="appx__chips" role="list">
+            {app.stats.map((s) => (
+              <li key={s.label}>{s.value}</li>
+            ))}
+          </ul>
+          {app.href && (
+            <a className="appx__open" href={app.href} target="_blank" rel="noopener noreferrer">
+              Open the app
+              <ArrowUpRight size={14} weight="bold" aria-hidden="true" />
+            </a>
+          )}
+        </div>
+      </div>
+    </li>
+  )
+}
+
 export function AppsSection() {
   return (
     <section className="projects projects--apps" aria-label="Web apps" data-reveal>
       <div className="projects__panel">
         <span className="projects__ext-eyebrow">Web apps built with Claude</span>
-        <ul className="projects__apps" role="list">
-          {mobileApps.map((app) => (
-            <AppCard key={app.name} app={app} />
-          ))}
+        <ul className="appx-list" role="list">
+          {mobileApps.map((app, k) =>
+            DEMO_APPS[app.name] ? (
+              <AppShowcase key={app.name} app={app} demo={DEMO_APPS[app.name]} index={k} />
+            ) : (
+              <AppCard key={app.name} app={app} />
+            ),
+          )}
         </ul>
       </div>
     </section>

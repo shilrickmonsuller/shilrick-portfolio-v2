@@ -9,18 +9,43 @@ export type DemoApp = {
   id: string
   name: string
   tabs: string[]
+  /** One line on what each tab does, same order as tabs. */
+  notes: string[]
   accent: string
 }
 
 export const DEMO_APPS: Record<string, DemoApp> = {
-  'A Day With Jesus': { id: 'a-day-with-jesus', name: 'A Day With Jesus', tabs: ['Today', 'Plan', 'Bible', 'Memory', 'More'], accent: '#B7791F' },
-  TUONTA: { id: 'tuonta', name: 'TUONTA', tabs: ['Notes', 'Notebooks', 'Review', 'More'], accent: '#2457C5' },
+  'A Day With Jesus': {
+    id: 'a-day-with-jesus',
+    name: 'A Day With Jesus',
+    tabs: ['Today', 'Plan', 'Bible', 'Memory', 'More'],
+    notes: ['Daily devotional', '3-year Bible plan', 'Bible, works offline', 'Memory verses', 'Prayer, journal, sermons'],
+    accent: '#B7791F',
+  },
+  TUONTA: {
+    id: 'tuonta',
+    name: 'TUONTA',
+    tabs: ['Notes', 'Notebooks', 'Review', 'More'],
+    notes: ['Notes, tasks, tags', 'Sorted by project', 'Flashcard review', 'Calendar & reminders'],
+    accent: '#2457C5',
+  },
 }
 
-const HOLD = 2200 // time on each screen
+export const HOLD = 2200 // time on each screen
 const TAP = 450 // the tap lands this long before the switch
 
-export default function PhoneDemo({ app, offset = 0, size = 'md' }: { app: DemoApp; offset?: number; size?: 'sm' | 'md' }) {
+export default function PhoneDemo({
+  app,
+  offset = 0,
+  size = 'md',
+  onIndex,
+}: {
+  app: DemoApp
+  offset?: number
+  size?: 'sm' | 'md'
+  /** Called with the tab now showing, so a caption can follow along. */
+  onIndex?: (i: number) => void
+}) {
   const n = app.tabs.length
   const [i, setI] = useState(0)
   const [tapping, setTapping] = useState(false)
@@ -48,6 +73,8 @@ export default function PhoneDemo({ app, offset = 0, size = 'md' }: { app: DemoA
       window.clearInterval(start)
     }
   }, [n, offset])
+
+  useEffect(() => { onIndex?.(i) }, [i, onIndex])
 
   const next = (i + 1) % n
   // Tab bar buttons are evenly spread across the screen width.
