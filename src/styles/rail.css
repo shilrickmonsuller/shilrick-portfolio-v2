@@ -264,3 +264,79 @@
      the page keeps exactly one navigation surface. */
   .nav { display: none; }
 }
+
+/* ============================================
+   Animated profile photo: a round photo inside a slowly turning teal ring,
+   floating gently, with a pulsing "available" dot. Hover lifts and tilts it.
+   ============================================ */
+@media (min-width: 1100px) {
+  .rail__avatar {
+    width: clamp(120px, 18vh, 168px);
+    padding: 6px;
+    border-radius: 50%;
+    isolation: isolate;
+    animation: avatar-float 6s ease-in-out infinite;
+  }
+  /* The ring: a conic gradient spun around the photo. */
+  .rail__avatar::before {
+    inset: 0;
+    z-index: -1;
+    background: conic-gradient(from 0deg, #14B8A6, #8D9DFF, #5EEAD4, transparent 70%, #14B8A6);
+    filter: none;
+    animation: avatar-spin 6s linear infinite;
+  }
+  /* Soft glow behind the ring, breathing. */
+  .rail__avatar-glow {
+    position: absolute;
+    inset: -14%;
+    z-index: -2;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(20, 184, 166, 0.35), transparent 65%);
+    filter: blur(14px);
+    animation: avatar-breathe 4s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .rail__avatar img {
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 30%;
+    border: 4px solid var(--cream);
+    -webkit-mask-image: none;
+    mask-image: none;
+    filter: drop-shadow(0 12px 20px rgba(6, 12, 26, 0.3));
+    transition: transform var(--dur-med) var(--ease-spring);
+  }
+  .rail__avatar:hover img { transform: scale(1.05) rotate(-3deg); }
+  /* "Available" dot, pulsing. */
+  .rail__avatar::after {
+    content: '';
+    position: absolute;
+    right: 9%;
+    bottom: 9%;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #22C55E;
+    border: 3px solid var(--cream);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+    animation: avatar-pulse 2s ease-out infinite;
+  }
+}
+
+@keyframes avatar-spin { to { transform: rotate(360deg); } }
+@keyframes avatar-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes avatar-breathe {
+  0%, 100% { opacity: 0.55; transform: scale(0.95); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+@keyframes avatar-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+  70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rail__avatar, .rail__avatar::before, .rail__avatar::after, .rail__avatar-glow { animation: none; }
+}

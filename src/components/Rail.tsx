@@ -41,7 +41,8 @@ export default function Rail() {
   return (
     <aside className="rail" aria-label="Profile and site navigation">
       <div className="rail__inner">
-        <span className="rail__avatar">
+        <span className="rail__avatar" title="Available for work">
+          <span className="rail__avatar-glow" aria-hidden="true" />
           <img
             src={profile.avatarSrc}
             alt={profile.name}
