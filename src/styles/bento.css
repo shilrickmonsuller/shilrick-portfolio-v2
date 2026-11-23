@@ -428,3 +428,16 @@
   .bento__review-role { font-size: 12.5px; }
 }
 .bento__badge-ring svg { color: var(--navy); }
+
+/* Specialty: n8n and GHL side by side. */
+.bento__spec { display: flex; align-items: center; gap: 14px; }
+.bento__badge-ring--pair {
+  width: clamp(64px, 5.2vw, 88px);
+  height: clamp(64px, 5.2vw, 88px);
+  animation: spec-bob 4s ease-in-out infinite;
+}
+.bento__badge-ring--pair + .bento__badge-ring--pair { animation-delay: -2s; }
+@keyframes spec-bob { 50% { transform: translateY(-4px); } }
+@media (prefers-reduced-motion: reduce) {
+  .bento__badge-ring--pair { animation: none; }
+}

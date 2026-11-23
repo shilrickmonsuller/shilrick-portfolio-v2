@@ -129,14 +129,20 @@ export default function HomeBento() {
 
       {/* Credentials: the badge that matters, on its plate. */}
       <Link to="/about" className="bento__card bento__card--creds">
-        <CardHead Icon={Medal} title="Specialty" desc="GoHighLevel CRM and automation." />
+        <CardHead Icon={Medal} title="Specialty" desc="n8n automation and GoHighLevel CRM." />
         <div className="bento__media bento__badge" aria-hidden="true">
-          <span className="bento__badge-ring">
-            <img src="/icons/gohighlevel.png" alt="" width={72} height={72} />
+          {/* n8n and GHL, side by side. */}
+          <span className="bento__spec">
+            <span className="bento__badge-ring bento__badge-ring--pair">
+              <img src="/icons/ai/n8n.svg" alt="" width={72} height={72} />
+            </span>
+            <span className="bento__badge-ring bento__badge-ring--pair">
+              <img src="/icons/gohighlevel.png" alt="" width={72} height={72} />
+            </span>
           </span>
           <span className="bento__badge-tag">
             <SealCheck size={14} weight="fill" />
-            GHL Specialist
+            n8n &amp; GHL Specialist
           </span>
         </div>
       </Link>
