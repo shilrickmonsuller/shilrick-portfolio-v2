@@ -1,0 +1,104 @@
+/* "My approach" as a running n8n canvas (MethodFlow.tsx). */
+.mflow {
+  --mf-node: #FFFFFF;
+  --mf-edge: rgba(11, 37, 69, 0.22);
+  --mf-wire: rgba(11, 37, 69, 0.28);
+  --mf-dot: rgba(11, 37, 69, 0.13);
+  --mf-sticky: rgba(212, 160, 23, 0.07);
+  --mf-sticky-edge: rgba(212, 160, 23, 0.35);
+  position: relative;
+  min-width: 0;
+  border-radius: 16px;
+  background: var(--ink-plate, #F7F7F2);
+  box-shadow: inset 0 0 0 1px var(--ink-line, rgba(11, 37, 69, 0.12));
+}
+[data-theme='dark'] .mflow {
+  --mf-node: #13203A;
+  --mf-edge: rgba(255, 255, 255, 0.16);
+  --mf-wire: rgba(255, 255, 255, 0.24);
+  --mf-dot: rgba(255, 255, 255, 0.08);
+  --mf-sticky: rgba(232, 192, 79, 0.06);
+  --mf-sticky-edge: rgba(232, 192, 79, 0.3);
+}
+.mflow__scroll { overflow-x: auto; scrollbar-width: none; }
+.mflow__scroll::-webkit-scrollbar { display: none; }
+.mflow__svg { display: block; width: 100%; min-width: 640px; height: auto; font-family: var(--font-display); }
+.mflow__dot { fill: var(--mf-dot); }
+
+.mflow__sticky rect { fill: var(--mf-sticky); stroke: var(--mf-sticky-edge); stroke-width: 1; stroke-dasharray: 4 4; }
+.mflow__sticky text { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--gold-ink); }
+.mflow__sticky-n { font-weight: 800; }
+
+/* wires */
+.mflow__wire-base { fill: none; stroke: var(--mf-wire); stroke-width: 2; transition: stroke 0.3s; }
+.mflow__wire.is-done .mflow__wire-base { stroke: var(--orange); }
+.mflow__wire.is-run .mflow__wire-base { stroke: var(--orange); opacity: 0.45; }
+.mflow__packet {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 6 200;
+  stroke-dashoffset: 6;
+  animation: mflow-packet 0.52s linear forwards;
+  filter: drop-shadow(0 0 4px rgba(212, 160, 23, 0.9));
+}
+@keyframes mflow-packet { to { stroke-dashoffset: -100; } }
+.mflow__wire-label { font-size: 10px; font-weight: 600; fill: var(--ink-muted, #5A6479); }
+.mflow__items { font-size: 9.5px; font-weight: 600; fill: var(--orange); animation: mflow-fade 0.3s ease-out; }
+
+/* nodes */
+.mflow__box { fill: var(--mf-node); stroke: var(--mf-edge); stroke-width: 1.5; transition: stroke 0.25s, stroke-width 0.25s; }
+.mflow__node.is-run .mflow__box { stroke: var(--gold); stroke-width: 2.5; }
+.mflow__node.is-done .mflow__box { stroke: var(--orange); stroke-width: 2.5; }
+.mflow__node.is-branch { opacity: 0.55; }
+.mflow__handle { fill: var(--mf-node); stroke: var(--mf-edge); stroke-width: 1.5; }
+.mflow__chip { fill: rgba(11, 37, 69, 0.05); }
+[data-theme='dark'] .mflow__chip { fill: #F4F4ED; }
+.mflow__name { font-size: 11.5px; font-weight: 600; fill: var(--ink, #0B2545); }
+.mflow__sub { font-size: 10px; fill: var(--ink-muted, #5A6479); }
+.mflow__in-name { font-size: 13px; font-weight: 700; fill: var(--ink, #0B2545); }
+.mflow__in-sub { font-size: 10.5px; fill: var(--ink-muted, #5A6479); }
+.mflow__glyph { fill: var(--orange); }
+.mflow__glyph--gold { fill: var(--gold); }
+.mflow__glyph-line path { fill: none; stroke: var(--ink, #0B2545); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.mflow__glyph-check { fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+
+.mflow__spin {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 3;
+  stroke-dasharray: 32 50;
+  stroke-linecap: round;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mflow-spin 0.7s linear infinite;
+}
+@keyframes mflow-spin { to { transform: rotate(360deg); } }
+.mflow__ok { animation: mflow-pop 0.35s var(--ease-spring) both; }
+.mflow__ok circle { fill: var(--orange); }
+.mflow__ok path { fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+@keyframes mflow-pop { from { transform: scale(0); } }
+@keyframes mflow-fade { from { opacity: 0; } }
+
+/* run status, bottom-right like n8n's execution toast */
+.mflow__status { position: absolute; right: 12px; bottom: 10px; }
+.mflow__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gold-ink);
+  background: rgba(212, 160, 23, 0.12);
+}
+.mflow__pill::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); animation: mflow-blink 0.8s ease-in-out infinite; }
+.mflow__pill.is-done { color: var(--orange-ink); background: rgba(14, 159, 110, 0.12); }
+.mflow__pill.is-done::before { background: var(--orange); animation: none; }
+@keyframes mflow-blink { 50% { opacity: 0.3; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .mflow * { animation: none !important; }
+}

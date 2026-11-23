@@ -1,6 +1,6 @@
-import type { CSSProperties } from 'react'
-import { MagnifyingGlass, Wrench, Trophy, CheckCircle } from '@/components/slab'
-import type { Icon } from '@/components/slab'
+import { CheckCircle } from '@/components/slab'
+import MethodFlow from './MethodFlow'
+import '@/styles/method-flow.css'
 import Autopilot, { TOOLS } from '@/components/Autopilot'
 
 /**
@@ -16,19 +16,6 @@ import Autopilot, { TOOLS } from '@/components/Autopilot'
 
 /* ---------- The method ---------- */
 
-type Stage = {
-  index: string
-  label: string
-  body: string
-  Icon: Icon
-  chips: string[]
-}
-
-const STAGES: Stage[] = [
-  { index: '01', label: 'Analyze', body: 'Find the repetitive work.', Icon: MagnifyingGlass, chips: ['Process map', 'Quick wins'] },
-  { index: '02', label: 'Build', body: 'Automate it with the right tools.', Icon: Wrench, chips: ['n8n', 'Zapier', 'Make.com', 'GHL'] },
-  { index: '03', label: 'Scale', body: 'Test, monitor and grow.', Icon: Trophy, chips: ['Error handling', 'Monitoring'] },
-]
 
 /* ---------- The services ---------- */
 
@@ -105,26 +92,7 @@ export default function ServicesGrid() {
             </p>
           </div>
 
-          <ol className="sgrid__stages" role="list">
-            {STAGES.map((s, i) => {
-              const StageIcon = s.Icon
-              return (
-                <li key={s.index} className="sgrid__stage" style={{ '--i': i } as CSSProperties}>
-                  <span className="sgrid__stage-ghost" aria-hidden="true">{s.index}</span>
-                  <span className="sgrid__stage-icon" aria-hidden="true">
-                    <StageIcon size={22} weight="duotone" />
-                  </span>
-                  <h3 className="sgrid__stage-label">{s.label}.</h3>
-                  <p className="sgrid__stage-body">{s.body}</p>
-                  <ul className="sgrid__stage-chips" role="list" aria-label={`${s.label} touches`}>
-                    {s.chips.map((c) => (
-                      <li key={c} className="sgrid__stage-chip">{c}</li>
-                    ))}
-                  </ul>
-                </li>
-              )
-            })}
-          </ol>
+          <MethodFlow />
         </div>
 
         {/* Five cards, each carrying the marks of what it is built with. */}
