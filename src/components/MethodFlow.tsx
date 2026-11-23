@@ -64,7 +64,10 @@ function Glyph({ kind, cx, cy }: { kind: NonNullable<NodeDef['glyph']>; cx: numb
   )
 }
 
-export default function MethodFlow() {
+/** Which approach step each part of the run belongs to. */
+const STAGE_OF: Record<string, number> = { lead: 0, w1: 0, ai: 0, w2: 0, if: 0, w3: 1, ghl: 1, w4: 1, mail: 1, w5: 2, won: 2, done: 3 }
+
+export default function MethodFlow({ onStage }: { onStage?: (stage: number) => void }) {
   const [step, setStep] = useState(STEPS.length - 1)
 
   useEffect(() => {
@@ -77,6 +80,7 @@ export default function MethodFlow() {
   }, [])
 
   const current = STEPS[step]
+  useEffect(() => { onStage?.(STAGE_OF[current]) }, [current, onStage])
   const reached = current === 'done' ? ORDER.length : ORDER.indexOf(current)
   const state = (id: string) => {
     const i = ORDER.indexOf(id)

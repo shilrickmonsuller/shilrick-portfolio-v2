@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { CheckCircle } from '@/components/slab'
 import MethodFlow from './MethodFlow'
 import '@/styles/method-flow.css'
@@ -63,7 +64,11 @@ function Marks({ logos }: { logos: string[] }) {
 
 /* ---------- The page ---------- */
 
+const METHOD_STEPS = ['Analyze', 'Build', 'Scale']
+
 export default function ServicesGrid() {
+  // Which approach step the live workflow is in (0-2), or 3 when it finished.
+  const [stage, setStage] = useState(0)
   return (
     <section className="pgrid sgrid" aria-labelledby="services-title">
       <header className="pgrid__head">
@@ -82,17 +87,21 @@ export default function ServicesGrid() {
         <div className="sgrid__method" aria-labelledby="method-title">
           <div className="sgrid__method-copy">
             <span className="sgrid__method-eyebrow">My approach</span>
-            <h2 className="sgrid__method-title" id="method-title">
-              Analyze. Build. Scale.
-              <br />
-              <span>Simple and reliable.</span>
-            </h2>
+            <h2 className="sr-only" id="method-title">Analyze, build, scale</h2>
+            <ol className="sgrid__steps" role="list">
+              {METHOD_STEPS.map((label, i) => (
+                <li key={label} className={`sgrid__step${stage === i ? ' is-on' : ''}${stage > i ? ' is-done' : ''}`}>
+                  <span className="sgrid__step-n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="sgrid__step-label">{label}</span>
+                </li>
+              ))}
+            </ol>
             <p className="sgrid__method-sub">
               Understand first, then automate.
             </p>
           </div>
 
-          <MethodFlow />
+          <MethodFlow onStage={setStage} />
         </div>
 
         {/* Five cards, each carrying the marks of what it is built with. */}
