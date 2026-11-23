@@ -340,3 +340,10 @@
 @media (prefers-reduced-motion: reduce) {
   .rail__avatar, .rail__avatar::before, .rail__avatar::after, .rail__avatar-glow { animation: none; }
 }
+
+/* Six buttons in the row (five links + theme): a touch smaller so they fit. */
+@media (min-width: 1100px) {
+  .rail__socials { gap: 7px; flex-wrap: nowrap; }
+  .rail__social, .rail__theme { width: 40px; height: 40px; }
+  .rail__social-icon { width: 18px; height: 18px; }
+}

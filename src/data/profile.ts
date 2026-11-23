@@ -68,6 +68,7 @@ export const profile: Profile = {
     { label: 'LinkedIn profile', href: 'https://www.linkedin.com/in/shilrick-monsuller-7805b9442/', iconPath: '/icons/linkedin.svg' },
     { label: 'Upwork profile', href: 'https://www.upwork.com/freelancers/~0112683cedcf711515', iconPath: '/icons/upwork.svg' },
     { label: 'OnlineJobs.ph profile', href: 'https://v2.onlinejobs.ph/jobseekers/info/5448246', iconPath: '/icons/onlinejobs.svg' },
+    { label: 'Facebook profile', href: 'https://www.facebook.com/share/1DzmnqV1v2/', iconPath: '/icons/facebook.svg' },
     { label: 'GitHub profile', href: 'https://github.com/shilrickmonsuller', iconPath: '/icons/github.svg' },
   ],
 }
