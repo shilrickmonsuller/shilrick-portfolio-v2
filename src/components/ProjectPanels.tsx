@@ -81,10 +81,10 @@ type Build = { id: string; label: string; src: string; path: string; Icon: Icon 
 const HOST = 'shilrick-monsuller'
 
 const BUILDS: Build[] = [
-  { id: 'support', label: 'Multi-Agent Support & Sales', src: '/projects/multi-agent-support.html', path: '/projects/multi-agent-support', Icon: Headset },
-  { id: 'voice', label: 'AI Voice Travel Assistant', src: '/projects/voice-travel-assistant.html', path: '/projects/voice-travel-assistant', Icon: Microphone },
-  { id: 'nutrition', label: 'AI Nutritionist & Wellness Coach', src: '/projects/ai-nutritionist.html', path: '/projects/ai-nutritionist', Icon: ForkKnife },
-  { id: 'linkedin', label: 'LinkedIn Content Auto-Publishing', src: '/projects/linkedin-content.html', path: '/projects/linkedin-content', Icon: LinkedinLogo },
+  { id: 'support', label: 'Multi-Agent Support & Sales', src: '/case-studies/multi-agent-support.html', path: '/projects/multi-agent-support', Icon: Headset },
+  { id: 'voice', label: 'AI Voice Travel Assistant', src: '/case-studies/voice-travel-assistant.html', path: '/projects/voice-travel-assistant', Icon: Microphone },
+  { id: 'nutrition', label: 'AI Nutritionist & Wellness Coach', src: '/case-studies/ai-nutritionist.html', path: '/projects/ai-nutritionist', Icon: ForkKnife },
+  { id: 'linkedin', label: 'LinkedIn Content Auto-Publishing', src: '/case-studies/linkedin-content.html', path: '/projects/linkedin-content', Icon: LinkedinLogo },
 ]
 
 /** One build, framed, open on arrival. */

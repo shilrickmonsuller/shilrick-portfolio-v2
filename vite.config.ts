@@ -1,9 +1,31 @@
-import { defineConfig } from 'vite'
+import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'node:path'
 
+/**
+ * Where the site is served from. '/' for Vercel, Netlify or a custom domain;
+ * the GitHub Pages workflow sets BASE_PATH=/<repo-name>/ because a project
+ * site lives under that folder.
+ */
+const BASE = process.env.BASE_PATH || '/'
+
+/** Files in public/ are referenced in the code as '/icons/x.svg' and the like.
+ *  Under a sub-folder those need the base in front, so rewrite them at build. */
+const PUBLIC_REF = /(['"`(])\/(icons\/|work\/|case-studies\/|placeholders\/|funnels\/|samples\/|home\/|testimonials\/|avatar\.|portrait\.|photo-|favicon)/g
+function publicBase(): Plugin {
+  return {
+    name: 'public-base',
+    enforce: 'pre',
+    transform(code, id) {
+      if (BASE === '/' || id.includes('node_modules') || !/\.(tsx?|jsx?)$/.test(id)) return null
+      return { code: code.replace(PUBLIC_REF, `$1${BASE}$2`), map: null }
+    },
+  }
+}
+
 export default defineConfig({
-  plugins: [react()],
+  base: BASE,
+  plugins: [publicBase(), react()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

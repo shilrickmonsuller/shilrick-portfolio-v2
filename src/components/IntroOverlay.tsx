@@ -58,7 +58,7 @@ const STEPS = [
 const shouldRun =
   typeof window !== 'undefined' &&
   !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
-  window.location.pathname === '/'
+  window.location.pathname.replace(/\/$/, '') === import.meta.env.BASE_URL.replace(/\/$/, '')
 
 // Two classes, because the page and the headline are handed back at different
 // moments: `is-intro` holds the whole page, `is-intro-head` holds only the real

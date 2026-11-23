@@ -3,7 +3,9 @@
 My portfolio as an AI Automation Specialist (n8n, AI agents, GoHighLevel, APIs).
 Built on the [BrewedOps portfolio template](https://github.com/brewed-ops/portfolio-template), used under its license (see LICENSE).
 
-**Deploy:** import this repo on Vercel or Netlify. Build command `npm run build`, output folder `dist`. The included `vercel.json` and `public/_redirects` make page links like `/about` work.
+**Deploy on GitHub Pages:** Settings > Pages > Source: **GitHub Actions**. Every push to `main` then builds and publishes the site to `https://shilrickmonsuller.github.io/shilrick-portfolio-v2/` (see `.github/workflows/pages.yml`).
+
+**Or on Vercel / Netlify:** import the repo; build command `npm run build`, output folder `dist`. `vercel.json` and `public/_redirects` make page links like `/about` work.
 
 **Hidden for now:** the Showcase and Testimonials pages. To bring one back, restore its route in `src/main.tsx` and its link in `src/components/Rail.tsx`.
 
