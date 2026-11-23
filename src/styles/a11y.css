@@ -224,13 +224,13 @@
 /* High contrast: the muted grey climbs to near-ink and hairlines darken. */
 :root[data-a11y-contrast='true'] {
   --muted: #2A3550;
-  --line: rgba(11, 30, 63, 0.4);
+  --line: rgba(11, 37, 69, 0.4);
   --orange-ink: #9A3D06;
 }
 :root[data-a11y-contrast='true'][data-theme='dark'] {
   --muted: rgba(237, 240, 246, 0.88);
   --line: rgba(255, 255, 255, 0.3);
-  --orange-ink: #5EEAD4;
+  --orange-ink: #34D399;
 }
 
 /* Reduce motion: every animation and transition stops; drifting tracks hold. */

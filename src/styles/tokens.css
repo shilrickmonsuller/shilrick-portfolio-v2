@@ -1,21 +1,23 @@
 :root {
   /* Brand palette */
-  --navy:       #0B1E3F;   /* primary text, card surface, dark accents */
+  --navy:       #0B2545;   /* primary text, card surface, dark accents */
   --navy-ink:   #060C1A;   /* matches shader dark base for .dark-section */
-  --cream:      #F4F4ED;   /* matches shader light base, page bg */
+  --cream:      #FAF8F2;   /* matches shader light base, page bg */
   --white:      #FFFFFF;
-  --orange:     #14B8A6;   /* CTA, accent bar, active dot */
-  --orange-hover: #5EEAD4; /* CTA hover state */
-  --orange-ink: #0F766E;   /* accessible orange TEXT on light bg - 4.88:1 on cream, 5.39:1 on white (WCAG AA) */
+  --orange:     #0E9F6E;   /* CTA, accent bar, active dot */
+  --orange-hover: #34D399; /* CTA hover state */
+  --orange-ink: #047857;   /* accessible orange TEXT on light bg - 4.88:1 on cream, 5.39:1 on white (WCAG AA) */
   --muted:      #5A6479;
-  --divider:    rgba(11, 30, 63, 0.12);
+  --divider:    rgba(11, 37, 69, 0.12);
+  --gold:       #D4A017;   /* brand highlight: labels, badges, photo ring */
+  --gold-ink:   #9A7209;   /* gold TEXT on light bg (AA for small caps labels) */
   --success:    #2E9E6B;   /* form status ok - clears 4.5:1 on navy-ink */
   --error:      #D9544F;   /* form status error - clears 4.5:1 on navy-ink */
 
   /* Brands section - neutral logo plate so client marks read as framed logos,
      not site UI (esp. an orange logo vs the --orange accent) */
   --brands-chip-bg:     #FBFBF7;                  /* cool near-white, lifts off cream */
-  --brands-chip-border: rgba(11, 30, 63, 0.10);   /* hairline frame on the logo medallion */
+  --brands-chip-border: rgba(11, 37, 69, 0.10);   /* hairline frame on the logo medallion */
 
   /* Type */
   --font-display: 'Poppins', system-ui, -apple-system, sans-serif;
@@ -39,9 +41,9 @@
   --radius-circle: 50%;
 
   /* Shadows */
-  --shadow-soft: 0 20px 60px -20px rgba(11, 30, 63, 0.25);
+  --shadow-soft: 0 20px 60px -20px rgba(11, 37, 69, 0.25);
   --shadow-card: 0 40px 120px -30px rgba(6, 12, 26, 0.35);
-  --shadow-btn: 0 8px 24px -8px rgba(11, 30, 63, 0.25);
+  --shadow-btn: 0 8px 24px -8px rgba(11, 37, 69, 0.25);
 
   /* Motion */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -72,14 +74,14 @@
   /* Surfaces. These are the tokens that had to exist for the theme to flip
      without rewriting the section stylesheets. */
   --paper:      #FBFBF7;   /* raised card on cream */
-  --line:       rgba(11, 30, 63, 0.14);
-  --line-strong:rgba(11, 30, 63, 0.28);
-  --tint:       rgba(11, 30, 63, 0.05);
-  --tint-strong:rgba(11, 30, 63, 0.09);
+  --line:       rgba(11, 37, 69, 0.14);
+  --line-strong:rgba(11, 37, 69, 0.28);
+  --tint:       rgba(11, 37, 69, 0.05);
+  --tint-strong:rgba(11, 37, 69, 0.09);
   --glass:      rgba(251, 251, 247, 0.72);
   /* A plate that stays light in BOTH themes. Brand marks are external
      identifiers and need a constant backdrop to read against. */
-  --plate:      #F4F4ED;
+  --plate:      #FAF8F2;
   /* The opaque fill for sections that were written as white-on-navy back when
      the shader inverted on scroll. It no longer does, so they carry their own
      ground. Same navy in both themes: their type is light either way. */
@@ -91,7 +93,7 @@
 
   /* Ink for anything sitting on --plate. Both are constant across themes:
      a brand mark on a light plate must not invert with the page. */
-  --plate-ink:  #0B1E3F;
+  --plate-ink:  #0B2545;
 }
 
 @media (min-width: 1100px) {
@@ -103,6 +105,7 @@
    --cream (page), --navy (ink), --white (card surface) and flips with it.
    Orange stays the single accent in both modes. */
 [data-theme='dark'] {
+  --gold-ink:     #E8C04F;
   --cream:        #070B14;
   --paper:        #0B1120;
   --white:        #0E1626;
@@ -115,11 +118,18 @@
   --tint:         rgba(255, 255, 255, 0.05);
   --tint-strong:  rgba(255, 255, 255, 0.09);
   --glass:        rgba(14, 22, 38, 0.72);
-  --orange-ink:   #5EEAD4;
+  --orange-ink:   #34D399;
   --panel-dark:   #0B1120;
-  --brands-chip-bg:     #F4F4ED;
+  --brands-chip-bg:     #FAF8F2;
   --brands-chip-border: rgba(255, 255, 255, 0.14);
   --shadow-soft:  0 20px 60px -20px rgba(0, 0, 0, 0.75);
   --shadow-card:  0 40px 120px -30px rgba(0, 0, 0, 0.85);
   --shadow-btn:   0 8px 24px -8px rgba(0, 0, 0, 0.7);
 }
+
+/* ---------- Brand: gold highlights ----------
+   Section labels (eyebrows) and the specialty badge carry the gold; green stays
+   the action color (buttons, links, icons) and navy the text. */
+[class*='eyebrow'] { color: var(--gold-ink) !important; }
+.bento__badge-tag { background: var(--gold-ink) !important; color: #fff !important; }
+[data-theme='dark'] .bento__badge-tag { color: #0B2545 !important; }

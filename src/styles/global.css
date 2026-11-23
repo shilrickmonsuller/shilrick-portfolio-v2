@@ -183,7 +183,7 @@ main > * {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 55%, rgba(20, 184, 166, 0.08), transparent 55%),
+    radial-gradient(circle at 50% 55%, rgba(14, 159, 110, 0.08), transparent 55%),
     var(--navy-ink);
 }
 
@@ -368,7 +368,7 @@ main > * {
   height: 220vmax;
   margin: -110vmax 0 0 -110vmax;
   border-radius: 50%;
-  /* Burnt orange, not the bright accent: a full-viewport flash of #14B8A6 is
+  /* Burnt orange, not the bright accent: a full-viewport flash of #0E9F6E is
      an eye-strain / photosensitivity risk, so the flood uses the darker ink
      tone and lets the accents stay bright at small sizes only. */
   background: var(--orange-ink);

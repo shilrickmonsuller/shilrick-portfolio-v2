@@ -1,7 +1,7 @@
 /* About, right side: tools orbiting the photo (see AboutOrbit.tsx). */
 .orbit {
-  --o-accent: #14B8A6;
-  --o-line: rgba(20, 184, 166, 0.45);
+  --o-accent: #0E9F6E;
+  --o-line: rgba(14, 159, 110, 0.45);
   --o-bg: #FFFFFF;
   --o-surface: #F2F7F6;
   --o-edge: #E3E9F2;
@@ -121,8 +121,8 @@
   transform: translate(-50%, -50%);
   border-radius: 50%;
   padding: 5px;
-  background: linear-gradient(135deg, #14B8A6 0%, #8D9DFF 100%);
-  box-shadow: 0 12px 30px rgba(20, 184, 166, 0.35);
+  background: linear-gradient(135deg, #0E9F6E 0%, #D4A017 100%);
+  box-shadow: 0 12px 30px rgba(14, 159, 110, 0.35);
 }
 .orbit__ctr img {
   display: block;
