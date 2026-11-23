@@ -1,0 +1,169 @@
+/* About, right side: tools orbiting the photo (see AboutOrbit.tsx). */
+.orbit {
+  --o-accent: #14B8A6;
+  --o-line: rgba(20, 184, 166, 0.45);
+  --o-bg: #FFFFFF;
+  --o-surface: #F2F7F6;
+  --o-edge: #E3E9F2;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  border-radius: 22px;
+  background: var(--o-surface);
+  overflow: hidden;
+}
+[data-theme='dark'] .orbit {
+  --o-bg: #111A2E;
+  --o-surface: #0B1323;
+  --o-edge: rgba(255, 255, 255, 0.08);
+}
+
+.orbit__win {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  background: var(--o-bg);
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 14px 40px rgba(16, 24, 40, 0.12);
+  overflow: hidden;
+}
+.orbit__bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--o-edge);
+  flex: none;
+}
+.orbit__bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--o-edge); }
+.orbit__bar i:nth-child(1) { background: #FF5F57; }
+.orbit__bar i:nth-child(2) { background: #FEBC2E; }
+.orbit__bar i:nth-child(3) { background: #28C840; }
+.orbit__url {
+  margin-left: 10px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--o-surface);
+  color: var(--muted, #5A6479);
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.orbit__live {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #16A34A;
+}
+.orbit__live::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22C55E;
+  animation: orbit-blink 1.6s ease-in-out infinite;
+}
+
+.orbit__pg { position: relative; flex: 1; overflow: hidden; }
+.orbit__ob {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(86%, 86cqh, 460px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+}
+.orbit__pg { container-type: size; }
+
+.orbit__ring {
+  position: absolute;
+  border: 1.5px dashed var(--o-line);
+  border-radius: 50%;
+  animation: orbit-spin var(--t) linear infinite;
+}
+.orbit__r1 { inset: 22%; --t: 16s; }
+.orbit__r2 { inset: 0; --t: 26s; animation-direction: reverse; }
+
+.orbit__it { position: absolute; inset: 0; transform: rotate(var(--a)); }
+.orbit__it i {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 52px;
+  height: 52px;
+  margin: -26px 0 0 -26px;
+  border-radius: 15px;
+  background: #FFFFFF;
+  border: 1px solid #E3E9F2;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 8px 24px rgba(16, 24, 40, 0.1);
+  display: grid;
+  place-items: center;
+  animation: orbit-counter var(--t) linear infinite;
+}
+.orbit__r2 .orbit__it i { animation-direction: reverse; }
+.orbit__it img { width: 28px; height: 28px; object-fit: contain; }
+
+.orbit__ctr {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 30%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  padding: 5px;
+  background: linear-gradient(135deg, #14B8A6 0%, #8D9DFF 100%);
+  box-shadow: 0 12px 30px rgba(20, 184, 166, 0.35);
+}
+.orbit__ctr img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  border: 3px solid var(--o-bg);
+}
+.orbit__ctr::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--o-accent);
+  animation: orbit-pulse 2.6s ease-out infinite;
+}
+
+@keyframes orbit-spin { to { transform: rotate(360deg); } }
+@keyframes orbit-counter {
+  from { transform: rotate(var(--na)); }
+  to { transform: rotate(calc(var(--na) - 360deg)); }
+}
+@keyframes orbit-pulse {
+  from { transform: scale(1); opacity: 0.6; }
+  to { transform: scale(1.6); opacity: 0; }
+}
+@keyframes orbit-blink { 50% { opacity: 0.35; } }
+
+@media (max-width: 640px) {
+  .orbit__it i { width: 42px; height: 42px; margin: -21px 0 0 -21px; border-radius: 12px; }
+  .orbit__it img { width: 22px; height: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .orbit *, .orbit *::before, .orbit *::after { animation: none !important; }
+}
+
+/* Fill the About photo slot. On phones the slot is short, so give it room. */
+.agrid__portrait--orbit { align-items: stretch; justify-content: stretch; }
+@media (max-width: 1099px) {
+  .agrid__portrait.agrid__portrait--orbit { height: min(92vw, 400px); flex: none; }
+  .agrid__portrait--orbit .orbit { min-height: 0; }
+}

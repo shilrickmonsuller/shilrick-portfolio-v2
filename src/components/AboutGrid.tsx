@@ -1,5 +1,7 @@
 import type { CSSProperties } from 'react'
 import { ArrowUpRight, MapPin, Briefcase } from '@/components/slab'
+import AboutOrbit from './AboutOrbit'
+import '@/styles/about-orbit.css'
 import { profile } from '@/data/profile'
 
 /**
@@ -126,15 +128,8 @@ export default function AboutGrid() {
           </div>
         </div>
 
-        <div className="agrid__portrait">
-          <img
-            src="/portrait.webp"
-            alt="Portrait of Shilrick Monsuller"
-            loading="eager"
-            decoding="async"
-            width={400}
-            height={400}
-          />
+        <div className="agrid__portrait agrid__portrait--orbit">
+          <AboutOrbit />
         </div>
       </div>
     </section>
