@@ -46,9 +46,9 @@ export function HomeStats() {
 }
 
 const TILES = [
-  { n: '01', label: 'Projects', to: '/projects', title: 'AI automation projects', desc: 'Multi-agent support, voice, wellness and content systems built with n8n.', img: '/work/workflow-1.jpg' },
-  { n: '02', label: 'Services', to: '/services', title: 'What I can automate for you', desc: 'Workflows, AI agents, CRM follow-ups and API integrations.', Icon: Stack },
-  { n: '03', label: 'About', to: '/about', title: `Hi, I'm ${profile.firstName}.`, desc: 'Engineering roots. Automation future.', img: profile.avatarSrc },
+  { n: '01', label: 'Projects', to: '/projects', title: 'AI automations & web apps', desc: 'n8n agents and apps built with Claude.', img: '/work/workflow-1.jpg' },
+  { n: '02', label: 'Services', to: '/services', title: 'What I can automate', desc: 'n8n, Zapier, Make.com and GHL.', Icon: Stack },
+  { n: '03', label: 'About', to: '/about', title: `Hi, I'm ${profile.firstName}.`, desc: 'AI automation & GHL specialist.', img: profile.avatarSrc },
   { n: '04', label: 'Contact', to: '/contact', title: "Let's build something smarter.", desc: 'Tell me what you want to automate.', Icon: ChatCircleText, accent: true },
 ] as const
 

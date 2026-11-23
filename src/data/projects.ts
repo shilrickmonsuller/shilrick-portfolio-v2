@@ -12,87 +12,45 @@ export type AppProject = {
   accentColor: string
   stats: AppStat[]
   badge: string
+  /** Live link to the app. */
+  href?: string
 }
 
 /** @deprecated use AppProject */
 export type MobileApp = AppProject
 
-/**
- * Your apps. Every value is a PLACEHOLDER. Screenshots live in
- * public/placeholders/ - swap in your own (960x514 works well).
- */
-const STATS: AppStat[] = [
-  { value: '0', label: 'Stat one' },
-  { value: '0', label: 'Stat two' },
-  { value: '0', label: 'Stat three' },
-]
-
-const DESC = 'PLACEHOLDER - tell me what to put here: what the app does, who it is for, and where it is published.'
-
+/** Web apps, shown in the Projects "Web apps" pop-up. */
 export const mobileApps: MobileApp[] = [
   {
-    name: 'App Name One',
-    tagline: 'PLACEHOLDER - one-line tagline.',
-    description: DESC,
-    imageSrc: '/placeholders/app-1.jpg',
-    imagePosition: '50% 30%',
-    accentColor: '#2563EB',
-    stats: STATS,
-    badge: 'Badge',
+    name: 'A Day With Jesus',
+    tagline: 'Daily devotional app.',
+    description: 'Devotionals, a 3-year Bible plan, memory verses, prayer and sermon notes. Works offline.',
+    imageSrc: '/work/app-a-day-with-jesus.jpg',
+    imagePosition: '50% 0%',
+    accentColor: '#B7791F',
+    stats: [
+      { value: 'Offline', label: 'Bible built in' },
+      { value: 'Google', label: 'Sign-in & Drive sync' },
+      { value: 'PWA', label: 'Installable' },
+    ],
+    badge: 'Web app',
+    href: 'https://shilrickmonsuller.github.io/a-day-with-jesus/',
   },
   {
-    name: 'App Name Two',
-    tagline: 'PLACEHOLDER - one-line tagline.',
-    description: DESC,
-    imageSrc: '/placeholders/app-2.jpg',
-    accentColor: '#7C3AED',
-    stats: STATS,
-    badge: 'Badge',
-  },
-  {
-    name: 'App Name Three',
-    tagline: 'PLACEHOLDER - one-line tagline.',
-    description: DESC,
-    imageSrc: '/placeholders/app-3.jpg',
-    accentColor: '#16A34A',
-    stats: STATS,
-    badge: 'Badge',
+    name: 'TUONTA',
+    tagline: 'Notes, tasks and flashcards.',
+    description: 'For work, projects and study. Saves on your phone first and syncs to Google Drive.',
+    imageSrc: '/work/app-tuonta.jpg',
+    imagePosition: '50% 0%',
+    accentColor: '#2457C5',
+    stats: [
+      { value: 'Offline', label: 'First' },
+      { value: 'Drive', label: 'Sync' },
+      { value: 'PWA', label: 'Installable' },
+    ],
+    badge: 'Web app',
+    href: 'https://shilrickmonsuller.github.io/tuonta/',
   },
 ]
 
-export const webApps: AppProject[] = [
-  {
-    name: 'Web App One',
-    tagline: 'PLACEHOLDER - one-line tagline.',
-    description: DESC,
-    accentColor: '#0EA5E9',
-    stats: STATS,
-    badge: 'Badge',
-  },
-  {
-    name: 'Web App Two',
-    tagline: 'PLACEHOLDER - one-line tagline.',
-    description: DESC,
-    accentColor: '#EF4444',
-    stats: STATS,
-    badge: 'Badge',
-  },
-  {
-    name: 'Web App Three',
-    tagline: 'PLACEHOLDER - one-line tagline.',
-    description: DESC,
-    imageSrc: '/placeholders/project-3.jpg',
-    accentColor: '#0891B2',
-    stats: STATS,
-    badge: 'Badge',
-  },
-  {
-    name: 'Web App Four',
-    tagline: 'PLACEHOLDER - one-line tagline.',
-    description: DESC,
-    imageSrc: '/placeholders/project-4.jpg',
-    accentColor: '#F59E0B',
-    stats: STATS,
-    badge: 'Badge',
-  },
-]
+export const webApps: AppProject[] = mobileApps

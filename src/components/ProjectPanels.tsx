@@ -68,7 +68,7 @@ export function AIWindow() {
 }
 export function AppsWindow() {
   return (
-    <SectionWindow label="Your apps">
+    <SectionWindow label="Web apps">
       <AppsSection />
     </SectionWindow>
   )

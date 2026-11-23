@@ -63,7 +63,7 @@ export default function ContactGrid() {
           Let’s build something smarter.
         </h1>
         <p className="pgrid__lede">
-          Interested in automation, CRM workflows or collaboration? Tell me what you want to automate and I will get back to you.
+          Tell me what you want to automate.
         </p>
       </header>
 

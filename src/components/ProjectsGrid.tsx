@@ -1,8 +1,8 @@
 import { Fragment, useCallback, useEffect, useRef, useState, type ComponentType, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { ArrowUpRight, X, Microphone, ForkKnife, LinkedinLogo, CursorClick } from '@/components/slab'
-import { FlowIcon, PlanIcon, SparkIcon } from './ProjectIcons'
-import { AutomationsPanel, SupportPanel, VoicePanel, NutritionPanel, LinkedInPanel, AIWindow } from './ProjectPanels'
+import { FlowIcon, PlanIcon, SparkIcon, DeviceIcon } from './ProjectIcons'
+import { AutomationsPanel, SupportPanel, VoicePanel, NutritionPanel, LinkedInPanel, AIWindow, AppsWindow } from './ProjectPanels'
 import { aiStack, type StackNode } from '@/data/ai-stack'
 import { useIsPhone } from '@/hooks/useMediaQuery'
 
@@ -33,11 +33,12 @@ type Project = {
   cat: Cat
 }
 
-type Cat = 'work' | 'ai'
+type Cat = 'work' | 'ai' | 'apps'
 const FILTERS: { key: Cat | 'all'; label: string }[] = [
   { key: 'all', label: 'All' },
   { key: 'work', label: 'Business' },
   { key: 'ai', label: 'AI agents' },
+  { key: 'apps', label: 'Apps' },
 ]
 
 /** Tool marks, from public/icons. */
@@ -49,12 +50,14 @@ const TELEGRAM = '/icons/ai/telegram.svg'
 const LINKEDIN = '/icons/ai/linkedin-color.svg'
 
 const WF_SHOTS = [1, 2, 3, 4].map((n) => `/work/workflow-${n}.jpg`)
+const CLAUDE = '/icons/ai/claude-color.svg'
+const APP_SHOTS = ['/work/app-a-day-with-jesus-phone.jpg', '/work/app-tuonta-phone.jpg']
 
 /** Projects 02-04: each its own card in the stack, each its own pop-up. */
 const BUILDS: Project[] = [
-  { id: 'voice', cat: 'ai', index: '03', kicker: 'Project 02 · Voice AI', title: 'AI Voice Travel Assistant', desc: 'Voice conversations become personalized itineraries, emailed to the customer.', Icon: () => <Microphone size={20} weight="duotone" />, logos: [ELEVENLABS], eyebrow: 'Project', Section: VoicePanel, Preview: () => null },
-  { id: 'nutrition', cat: 'ai', index: '04', kicker: 'Project 03 · Telegram bot', title: 'AI Nutritionist & Wellness Coach', desc: 'Food photos, voice and text become calorie logs and coaching on Telegram.', Icon: () => <ForkKnife size={20} weight="duotone" />, logos: [TELEGRAM], eyebrow: 'Project', Section: NutritionPanel, Preview: () => null },
-  { id: 'linkedin', cat: 'work', index: '05', kicker: 'Project 04 · Content', title: 'LinkedIn Content Auto-Publishing', desc: 'AI agents research, write, illustrate and publish LinkedIn posts.', Icon: () => <LinkedinLogo size={20} weight="duotone" />, logos: [LINKEDIN], eyebrow: 'Project', Section: LinkedInPanel, Preview: () => null },
+  { id: 'voice', cat: 'ai', index: '03', kicker: 'Project 02 · Voice AI', title: 'AI Voice Travel Assistant', desc: 'Voice in, travel itinerary out.', Icon: () => <Microphone size={20} weight="duotone" />, logos: [ELEVENLABS], eyebrow: 'Project', Section: VoicePanel, Preview: () => null },
+  { id: 'nutrition', cat: 'ai', index: '04', kicker: 'Project 03 · Telegram bot', title: 'AI Nutritionist & Wellness Coach', desc: 'Meal photos to calorie logs on Telegram.', Icon: () => <ForkKnife size={20} weight="duotone" />, logos: [TELEGRAM], eyebrow: 'Project', Section: NutritionPanel, Preview: () => null },
+  { id: 'linkedin', cat: 'work', index: '05', kicker: 'Project 04 · Content', title: 'LinkedIn Content Auto-Publishing', desc: 'AI writes and posts to LinkedIn.', Icon: () => <LinkedinLogo size={20} weight="duotone" />, logos: [LINKEDIN], eyebrow: 'Project', Section: LinkedInPanel, Preview: () => null },
 ]
 
 const leaves = (n: StackNode): StackNode[] => (n.children?.length ? n.children.flatMap(leaves) : [n])
@@ -95,6 +98,20 @@ function PlanPreview() {
 }
 
 
+function AppsPreview() {
+  return (
+    <div className="bento__media bento__reel bento__reel--row" aria-hidden="true">
+      <div className="bento__reel-track">
+        {[...APP_SHOTS, ...APP_SHOTS, ...APP_SHOTS, ...APP_SHOTS].map((src, i) => (
+          <span key={i} className="bento__shot bento__shot--app">
+            <img src={src} alt="" loading="lazy" decoding="async" />
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 function AIPreview() {
   const half = Math.ceil(AI_LEAVES.length / 2)
   const rows = [AI_LEAVES.slice(0, half), AI_LEAVES.slice(half)]
@@ -118,9 +135,10 @@ function AIPreview() {
 
 
 const PROJECTS: Project[] = [
-  { id: 'workflows', cat: 'work', index: '01', title: 'The workflows', desc: 'The n8n canvases behind each project. Open one to see every node.', Icon: FlowIcon, logos: [N8N], eyebrow: 'Screenshots', Section: AutomationsPanel, span: 2, Preview: WorkflowsPreview },
-  { id: 'plan', cat: 'work', index: '02', title: 'Multi-Agent Support & Sales', desc: 'AI agents that answer, qualify, book and follow up, 24/7.', Icon: PlanIcon, logos: [N8N, GHL, OPENAI], eyebrow: 'Project 01', Section: SupportPanel, Preview: PlanPreview },
-  { id: 'ai', cat: 'ai', index: '06', title: 'All projects at a glance', desc: 'What each system does and what it is built with.', Icon: SparkIcon, logos: [N8N, OPENAI], eyebrow: 'Projects', Section: AIWindow, Preview: AIPreview },
+  { id: 'workflows', cat: 'work', index: '01', title: 'The workflows', desc: 'The n8n canvases behind each project.', Icon: FlowIcon, logos: [N8N], eyebrow: 'Screenshots', Section: AutomationsPanel, span: 2, Preview: WorkflowsPreview },
+  { id: 'plan', cat: 'work', index: '02', title: 'Multi-Agent Support & Sales', desc: 'Answers, qualifies and books leads 24/7.', Icon: PlanIcon, logos: [N8N, GHL, OPENAI], eyebrow: 'Project 01', Section: SupportPanel, Preview: PlanPreview },
+  { id: 'apps', cat: 'apps', index: '07', title: 'Web apps', desc: 'A Day With Jesus and TUONTA, built with Claude.', Icon: DeviceIcon, logos: [CLAUDE], eyebrow: 'Web apps', Section: AppsWindow, span: 2, Preview: AppsPreview },
+  { id: 'ai', cat: 'ai', index: '06', title: 'All AI projects', desc: 'What each one does and runs on.', Icon: SparkIcon, logos: [N8N, OPENAI], eyebrow: 'Projects', Section: AIWindow, span: 2, Preview: AIPreview },
 ]
 
 /** The icon tile, or the real marks stacked horizontally in its place. */
@@ -254,9 +272,9 @@ export default function ProjectsGrid() {
       <header className="pgrid__head">
         <span className="pgrid__eyebrow">Projects</span>
         <h1 className="pgrid__title" id="projects-title">
-          AI automation projects.
+          My projects.
         </h1>
-        <p className="pgrid__lede">Hands-on AI automation projects built with n8n, AI agents and integrations. Open a card to see it full size.</p>
+        <p className="pgrid__lede">AI automations and web apps. Click a card to open it.</p>
       </header>
 
       {phone && (

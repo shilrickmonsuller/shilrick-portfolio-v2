@@ -25,41 +25,24 @@ type Stage = {
 }
 
 const STAGES: Stage[] = [
-  {
-    index: '01',
-    label: 'Analyze',
-    body: 'Map how your business runs today and find the bottlenecks and repetitive work.',
-    Icon: MagnifyingGlass,
-    chips: ['Process mapping', 'Bottlenecks', 'Quick wins'],
-  },
-  {
-    index: '02',
-    label: 'Build',
-    body: 'Connect n8n with AI agents, your CRM, APIs and databases into one reliable workflow.',
-    Icon: Wrench,
-    chips: ['n8n', 'AI agents', 'Integrations'],
-  },
-  {
-    index: '03',
-    label: 'Test & scale',
-    body: 'Add error handling, test every path and monitor it so it keeps running as you grow.',
-    Icon: Trophy,
-    chips: ['Error handling', 'Monitoring', 'Scalable'],
-  },
+  { index: '01', label: 'Analyze', body: 'Find the repetitive work.', Icon: MagnifyingGlass, chips: ['Process map', 'Quick wins'] },
+  { index: '02', label: 'Build', body: 'Automate it with the right tools.', Icon: Wrench, chips: ['n8n', 'Zapier', 'Make.com', 'GHL'] },
+  { index: '03', label: 'Scale', body: 'Test, monitor and grow.', Icon: Trophy, chips: ['Error handling', 'Monitoring'] },
 ]
 
 /* ---------- The services ---------- */
 
 const GHL = '/icons/gohighlevel.png'
 const N8N = '/icons/ai/n8n.svg'
+const ZAPIER = '/icons/ai/zapier.svg'
+const MAKE = '/icons/ai/make.svg'
 const OPENAI = '/icons/openai.svg'
-const ELEVENLABS = '/icons/ai/elevenlabs.svg'
+const CLAUDE = '/icons/ai/claude-color.svg'
 const TELEGRAM = '/icons/ai/telegram.svg'
 const SUPABASE = '/icons/ai/supabase.svg'
-const POSTGRES = '/icons/ai/postgresql.svg'
 const SHEETS = '/icons/ai/googlesheets.svg'
 const GMAIL = '/icons/ai/gmail.svg'
-const LINKEDIN = '/icons/ai/linkedin-color.svg'
+const GITHUB = '/icons/ai/github.svg'
 
 type Service = {
   index: string
@@ -71,46 +54,11 @@ type Service = {
 }
 
 const SERVICES: Service[] = [
-  {
-    index: '01',
-    title: 'Workflow Automation',
-    description: 'n8n workflows that move data between your apps and remove repetitive manual steps.',
-    chip: 'n8n',
-    logos: [N8N, SHEETS, GMAIL],
-    bullets: ['Triggers, branching and webhooks', 'Data mapping between apps', 'Error handling built in'],
-  },
-  {
-    index: '02',
-    title: 'AI Agents & Chatbots',
-    description: 'AI agents that answer customers, qualify leads and book appointments 24/7.',
-    chip: 'AI',
-    logos: [OPENAI, N8N, TELEGRAM],
-    bullets: ['Customer support & sales', 'Knowledge-base answers', 'Messenger, Telegram & more'],
-  },
-  {
-    index: '03',
-    title: 'CRM Automation',
-    description: 'GoHighLevel pipelines with automated follow-ups and customer communication.',
-    chip: 'GoHighLevel',
-    logos: [GHL, N8N, GMAIL],
-    bullets: ['Lead capture & management', 'Automated follow-ups', 'Booking & reminders'],
-  },
-  {
-    index: '04',
-    title: 'API & Data Integrations',
-    description: 'REST APIs, authentication and databases connected into one reliable system.',
-    chip: 'APIs',
-    logos: [SUPABASE, POSTGRES, N8N],
-    bullets: ['REST APIs & webhooks', 'Supabase & PostgreSQL', 'Structured, clean data'],
-  },
-  {
-    index: '05',
-    title: 'Voice & Content Automation',
-    description: 'Voice assistants and AI content systems that research, write and publish for you.',
-    chip: 'Voice & content',
-    logos: [ELEVENLABS, OPENAI, LINKEDIN],
-    bullets: ['AI voice assistants', 'Content research & writing', 'Auto-publishing'],
-  },
+  { index: '01', title: 'Workflow Automation', description: 'Connect your apps and drop manual steps.', chip: 'n8n · Zapier · Make', logos: [N8N, ZAPIER, MAKE], bullets: ['Triggers & webhooks', 'App-to-app data sync', 'Error handling'] },
+  { index: '02', title: 'GoHighLevel CRM', description: 'Pipelines, funnels and automatic follow-ups.', chip: 'GHL', logos: [GHL, GMAIL, N8N], bullets: ['Lead capture', 'Follow-up sequences', 'Booking & reminders'] },
+  { index: '03', title: 'AI Agents & Chatbots', description: 'Answer, qualify and book leads 24/7.', chip: 'AI', logos: [OPENAI, CLAUDE, TELEGRAM], bullets: ['Support & sales', 'Knowledge base', 'Messenger & Telegram'] },
+  { index: '04', title: 'API & Data Integrations', description: 'APIs and databases working as one.', chip: 'APIs', logos: [SUPABASE, SHEETS, N8N], bullets: ['REST APIs', 'Supabase & Sheets', 'Clean data'] },
+  { index: '05', title: 'Web Apps with Claude', description: 'Fast, installable web apps.', chip: 'Claude', logos: [CLAUDE, GITHUB, SUPABASE], bullets: ['Works offline', 'Google sign-in', 'Phone & desktop'] },
 ]
 
 /** The tool marks, stacked horizontally on white tiles (same as Projects). */
@@ -137,7 +85,7 @@ export default function ServicesGrid() {
           Automation that works while you don’t.
         </h1>
         <p className="pgrid__lede">
-          I design n8n workflows, AI agents and CRM automations that cut repetitive work and help your business respond faster.
+          Less manual work. Faster replies. More booked clients.
         </p>
       </header>
 
@@ -150,10 +98,10 @@ export default function ServicesGrid() {
             <h2 className="sgrid__method-title" id="method-title">
               Analyze. Build. Scale.
               <br />
-              <span>Engineering discipline.</span>
+              <span>Simple and reliable.</span>
             </h2>
             <p className="sgrid__method-sub">
-              Good automation starts with understanding how your business operates, not just connecting apps.
+              Understand first, then automate.
             </p>
           </div>
 
@@ -218,7 +166,7 @@ export default function ServicesGrid() {
               <span className="sgrid__flow-eyebrow">Live automation</span>
               <h2 className="sgrid__flow-title">A lead, from first message to booking.</h2>
               <p className="sgrid__flow-sub">
-                An AI agent qualifies every inquiry, updates the CRM and follows up until the appointment is booked.
+                AI qualifies, the CRM updates, follow-ups run until it’s booked.
               </p>
             </div>
             <ul className="sgrid__flow-tools" role="list" aria-label="Tools that power this flow">

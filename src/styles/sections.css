@@ -3460,3 +3460,22 @@ html.has-notice .nav { top: 62px; }
 @media (max-width: 480px) {
   html.has-notice .nav { top: 78px; }
 }
+
+/* Live link under each app's description. */
+.app-card__open {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  margin: 2px 0 12px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--navy);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.app-card__open:hover { transform: translateY(-1px); }
+[data-theme='dark'] .app-card__open { background: var(--orange); color: var(--navy-ink); }

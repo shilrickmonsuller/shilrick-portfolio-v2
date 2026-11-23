@@ -8,7 +8,7 @@
  * other files in src/data/ and at the top of each view component.
  */
 
-import { Briefcase, SealCheck, Clock, type Icon } from '@/components/slab'
+import { Lightning, SealCheck, Clock, type Icon } from '@/components/slab'
 
 export type SocialLink = {
   label: string
@@ -47,20 +47,20 @@ export const profile: Profile = {
   name: 'Shilrick Monsuller',
   firstName: 'Shilrick',
   handle: '@shilrickmonsuller',
-  role: 'AI Automation Specialist',
+  role: 'AI Automation & GHL Specialist',
   avatarSrc: '/avatar.webp',
-  verifiedLabel: 'BS Chemical Engineering, Mindanao State University',
+  verifiedLabel: 'AI Automation & GoHighLevel Specialist',
   email: 'shilrickmonsuller@gmail.com',
   location: 'Iligan City, Philippines',
   stats: [
-    { value: '10+ yrs', label: 'Leading operations', Icon: Briefcase },
-    { value: 'n8n', label: 'Primary platform', Icon: SealCheck },
+    { value: 'n8n', label: 'Zapier · Make', Icon: Lightning },
+    { value: 'GHL', label: 'Specialist', Icon: SealCheck },
     { value: 'GMT+8', label: 'Philippines', Icon: Clock },
   ],
   // The intro types this line, then flies it into the Home headline.
   displayName: { line1: 'Complex processes,', line2: 'automated.' },
   hero: {
-    body: 'AI Automation Specialist building reliable workflows with n8n, AI, APIs and CRM integrations.',
+    body: 'AI automation with n8n, Zapier, Make.com and GoHighLevel.',
     portraitSrc: '/portrait.webp',
     portraitAlt: 'Portrait of Shilrick Monsuller',
   },

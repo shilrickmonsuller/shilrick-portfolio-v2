@@ -7,24 +7,9 @@ export type QA = { q: string; a: string }
  * fixed panel and more than that pushes the email row off the plate.
  */
 export const FAQS: QA[] = [
-  {
-    q: 'What do you do?',
-    a: 'I build AI automations: n8n workflows, AI agents and chatbots, GoHighLevel CRM follow-ups and API integrations. The goal is less repetitive work and faster responses for your business.',
-  },
-  {
-    q: 'What tools do you work with?',
-    a: 'n8n is my primary platform. I connect it with OpenAI, GoHighLevel, Supabase and PostgreSQL, Google Workspace, Telegram, ElevenLabs and any service with a REST API or webhooks.',
-  },
-  {
-    q: 'What is your background?',
-    a: 'I am a Chemical Engineer (BS, Mindanao State University) with over ten years of leading industrial operations. That taught me to analyze processes, troubleshoot and build systems that hold up.',
-  },
-  {
-    q: 'Where are you based?',
-    a: 'Iligan City, Philippines (GMT+8). I work remotely and can overlap with clients in Asia, Australia, Europe and US time zones.',
-  },
-  {
-    q: 'What happens after I write?',
-    a: 'I reply by email, ask a few questions about your process and tools, then suggest how I would automate it before any work starts.',
-  },
+  { q: 'What do you do?', a: 'AI automations, GoHighLevel CRM setups and web apps.' },
+  { q: 'Which tools do you use?', a: 'n8n, Zapier, Make.com, GoHighLevel, OpenAI and Claude.' },
+  { q: 'Can you work with my current tools?', a: 'Yes. If it has an API or webhooks, I can connect it.' },
+  { q: 'Where are you based?', a: 'Philippines (GMT+8). I work remotely with any time zone.' },
+  { q: 'What happens after I write?', a: 'I reply within a day with a few questions and a plan.' },
 ]

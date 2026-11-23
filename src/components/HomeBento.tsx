@@ -7,14 +7,13 @@ import {
   Robot,
   Medal,
   Stack,
-  FunnelSimple,
   Gear,
   AddressBook,
   Plugs,
+  AppWindow,
   SealCheck,
-  GraduationCap,
   Path,
-  CalendarBlank,
+  Lightning,
 } from '@/components/slab'
 import { aiStack, type StackNode } from '@/data/ai-stack'
 import { profile } from '@/data/profile'
@@ -31,18 +30,18 @@ import { profile } from '@/data/profile'
 const PROJECT_SHOTS = [1, 2, 3, 4].map((n) => `/work/workflow-${n}.jpg`)
 
 const OFFERS = [
-  { Icon: Gear, title: 'Workflow Automation', note: 'n8n workflows and webhooks' },
+  { Icon: Gear, title: 'Workflow Automation', note: 'n8n · Zapier · Make.com' },
   { Icon: Robot, title: 'AI Agents & Chatbots', note: 'Support, sales and booking' },
-  { Icon: AddressBook, title: 'CRM Automation', note: 'GoHighLevel follow-ups' },
+  { Icon: AddressBook, title: 'GoHighLevel CRM', note: 'Pipelines and follow-ups' },
   { Icon: Plugs, title: 'API & Data Integrations', note: 'REST APIs, Supabase, Sheets' },
-  { Icon: FunnelSimple, title: 'Process Optimization', note: 'Map, simplify, automate' },
+  { Icon: AppWindow, title: 'Web Apps with Claude', note: 'Fast, installable apps' },
 ] as const
 
 const JOURNEY = [
-  { name: '2016 – Present', role: 'Chemical Manufacturing Supervisor', work: 'Operations · Safety · Improvement' },
-  { name: '2026 – Present', role: 'AI Automation, independent projects', work: 'n8n · GoHighLevel · APIs' },
-  { name: '2025 – Present', role: 'Udemy: Web Development & Python', work: 'Continuing learning' },
-  { name: '2007 – 2013', role: 'BS Chemical Engineering', work: 'Mindanao State University' },
+  { name: 'Automation', role: 'Workflows and AI agents', work: 'n8n · Zapier · Make.com' },
+  { name: 'CRM', role: 'GoHighLevel specialist', work: 'Pipelines · Funnels · Follow-ups' },
+  { name: 'Web apps', role: 'Built with Claude', work: 'A Day With Jesus · TUONTA' },
+  { name: 'AI', role: 'Agents, voice and content', work: 'OpenAI · ElevenLabs · Claude' },
 ]
 
 // Three photos of you, fanned. Small copies are fine - the fan shows them under 100px.
@@ -84,7 +83,7 @@ export default function HomeBento() {
     <nav className="bento" aria-label="Explore the portfolio">
       {/* Projects: the workflow screenshots drift upward on a looped track. */}
       <Link to="/projects" className="bento__card bento__card--projects">
-        <CardHead Icon={FolderOpen} title="Projects" desc="AI automation workflows built with n8n." />
+        <CardHead Icon={FolderOpen} title="Projects" desc="AI automations and web apps." />
         <div className="bento__media bento__reel" aria-hidden="true">
           <div className="bento__reel-track">
             {[...PROJECT_SHOTS, ...PROJECT_SHOTS].map((src, i) => (
@@ -98,7 +97,7 @@ export default function HomeBento() {
 
       {/* About: a fanned stack of photos. */}
       <Link to="/about" className="bento__card bento__card--about">
-        <CardHead Icon={User} title="About" desc="Engineering roots. Automation future." />
+        <CardHead Icon={User} title="About" desc="AI automation & GHL specialist." />
         <div className="bento__media bento__fan" aria-hidden="true">
           {PHOTOS.map((src, i) => (
             <span key={src} className="bento__photo" style={{ ['--i' as string]: i }}>
@@ -130,21 +129,21 @@ export default function HomeBento() {
 
       {/* Credentials: the badge that matters, on its plate. */}
       <Link to="/about" className="bento__card bento__card--creds">
-        <CardHead Icon={Medal} title="Education" desc="BS Chemical Engineering, MSU Marawi." />
+        <CardHead Icon={Medal} title="Specialty" desc="GoHighLevel CRM and automation." />
         <div className="bento__media bento__badge" aria-hidden="true">
           <span className="bento__badge-ring">
-            <GraduationCap size={52} weight="duotone" />
+            <img src="/icons/gohighlevel.png" alt="" width={72} height={72} />
           </span>
           <span className="bento__badge-tag">
             <SealCheck size={14} weight="fill" />
-            Chemical Engineer
+            GHL Specialist
           </span>
         </div>
       </Link>
 
       {/* Services: the five offers as a compact index. */}
       <Link to="/services" className="bento__card bento__card--services">
-        <CardHead Icon={Stack} title="Services" desc="Automation that saves hours every week." />
+        <CardHead Icon={Stack} title="Services" desc="Automation that saves hours." />
         <ul className="bento__media bento__offers" role="list">
           {OFFERS.map(({ Icon, title, note }, i) => (
             <li key={title} className="bento__offer" style={{ '--i': i } as React.CSSProperties}>
@@ -163,15 +162,15 @@ export default function HomeBento() {
         </ul>
       </Link>
 
-      {/* Journey: experience and education drifting up a clipped column. */}
+      {/* Toolkit: what I work with, drifting up a clipped column. */}
       <Link to="/about" className="bento__card bento__card--quotes">
-        <CardHead Icon={Path} title="Journey" desc="Experience and education." />
+        <CardHead Icon={Path} title="Toolkit" desc="What I work with." />
         <div className="bento__media bento__reviews" aria-hidden="true">
           <div className="bento__reviews-track">
             {[...JOURNEY, ...JOURNEY].map((c, i) => (
               <span key={i} className="bento__review">
                 <span className="bento__review-top">
-                  <CalendarBlank size={14} weight="fill" />
+                  <Lightning size={14} weight="fill" />
                   <b>{c.name}</b>
                 </span>
                 <span className="bento__review-role">{c.role}</span>

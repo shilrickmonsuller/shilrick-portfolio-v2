@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { ArrowUpRight, MapPin, GraduationCap, Briefcase } from '@/components/slab'
+import { ArrowUpRight, MapPin, Briefcase } from '@/components/slab'
 import { profile } from '@/data/profile'
 
 /**
@@ -15,17 +15,16 @@ import { profile } from '@/data/profile'
  */
 
 const N8N = { src: '/icons/ai/n8n.svg', name: 'n8n' }
-const SUPABASE = { src: '/icons/ai/supabase.svg', name: 'Supabase' }
-const SHEETS = { src: '/icons/ai/googlesheets.svg', name: 'Google Sheets' }
-const OPENAI = { src: '/icons/openai.svg', name: 'OpenAI' }
-const ELEVENLABS = { src: '/icons/ai/elevenlabs.svg', name: 'ElevenLabs' }
-const TELEGRAM = { src: '/icons/ai/telegram.svg', name: 'Telegram' }
+const ZAPIER = { src: '/icons/ai/zapier.svg', name: 'Zapier' }
+const MAKE = { src: '/icons/ai/make.svg', name: 'Make.com' }
 const GHL = { src: '/icons/gohighlevel.png', name: 'GoHighLevel' }
 const GMAIL = { src: '/icons/ai/gmail.svg', name: 'Gmail' }
-const POSTGRES = { src: '/icons/ai/postgresql.svg', name: 'PostgreSQL' }
-const PYTHON = { src: '/icons/ai/python.svg', name: 'Python' }
+const SHEETS = { src: '/icons/ai/googlesheets.svg', name: 'Google Sheets' }
+const OPENAI = { src: '/icons/openai.svg', name: 'OpenAI' }
+const CLAUDE = { src: '/icons/ai/claude-color.svg', name: 'Claude' }
+const ELEVENLABS = { src: '/icons/ai/elevenlabs.svg', name: 'ElevenLabs' }
 const GITHUB = { src: '/icons/ai/github.svg', name: 'GitHub' }
-const DRIVE = { src: '/icons/ai/googledrive.svg', name: 'Google Drive' }
+const SUPABASE = { src: '/icons/ai/supabase.svg', name: 'Supabase' }
 
 type Capability = {
   index: string
@@ -34,10 +33,10 @@ type Capability = {
 }
 
 const CAPABILITIES: Capability[] = [
-  { index: '01', title: 'Workflow automation', marks: [N8N, SUPABASE, SHEETS] },
-  { index: '02', title: 'AI agents & integrations', marks: [OPENAI, ELEVENLABS, TELEGRAM] },
-  { index: '03', title: 'CRM systems & follow-ups', marks: [GHL, GMAIL, POSTGRES] },
-  { index: '04', title: 'Web, Python & data', marks: [PYTHON, GITHUB, DRIVE] },
+  { index: '01', title: 'Workflow automation', marks: [N8N, ZAPIER, MAKE] },
+  { index: '02', title: 'GoHighLevel CRM', marks: [GHL, GMAIL, SHEETS] },
+  { index: '03', title: 'AI agents & chatbots', marks: [OPENAI, CLAUDE, ELEVENLABS] },
+  { index: '04', title: 'Web apps with Claude', marks: [CLAUDE, GITHUB, SUPABASE] },
 ]
 
 export default function AboutGrid() {
@@ -49,25 +48,20 @@ export default function AboutGrid() {
           {`Hi, I’m ${profile.firstName}.`}
         </h1>
         <p className="pgrid__lede">
-          AI Automation Specialist with a Chemical Engineering background and years of leading industrial operations.
+          AI Automation & GoHighLevel Specialist.
         </p>
       </header>
 
       <div className="home__glass agrid__glass">
         <div className="agrid__copy">
           <p className="agrid__lead">
-            Engineering roots. Automation future.
-            <span> Practical thinking, measurable impact.</span>
+            I automate the busywork.
+            <span> So you can focus on growth.</span>
           </p>
 
           <p className="agrid__note">
-            I bring analytical thinking, problem-solving and process optimization from{' '}
-            <strong>chemical manufacturing</strong> to AI automation. Using{' '}
-            <a className="agrid__link" href="https://n8n.io" target="_blank" rel="noopener noreferrer">
-              n8n
-            </a>{' '}
-            as my primary platform, I connect AI tools, CRMs, APIs, databases and business apps into
-            reliable workflows that cut repetitive work and deliver long-term value.
+            I build workflows in <strong>n8n, Zapier and Make.com</strong>, set up{' '}
+            <strong>GoHighLevel</strong> CRMs, and build web apps with <strong>Claude</strong>.
           </p>
 
           <ul className="agrid__caps" role="list">
@@ -95,12 +89,12 @@ export default function AboutGrid() {
           {/* One plate, two cells sharing a mark / title / meta anatomy. */}
           <div className="agrid__bar">
             <span className="agrid__cell">
-              <span className="agrid__cell-mark">
-                <GraduationCap size={16} weight="fill" aria-hidden="true" />
+              <span className="agrid__cell-mark agrid__cell-mark--img">
+                <img src="/icons/gohighlevel.png" alt="" loading="lazy" decoding="async" />
               </span>
               <span className="agrid__cell-copy">
-                <span className="agrid__cell-title">BS Chemical Engineering</span>
-                <span className="agrid__cell-meta">Mindanao State University, Marawi</span>
+                <span className="agrid__cell-title">GoHighLevel Specialist</span>
+                <span className="agrid__cell-meta">CRM · Funnels · Automation</span>
               </span>
             </span>
 
