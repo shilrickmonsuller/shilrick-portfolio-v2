@@ -12,6 +12,8 @@ export type DemoApp = {
   /** One line on what each tab does, same order as tabs. */
   notes: string[]
   accent: string
+  /** No bottom tab bar (a scrolling site): skip the finger tap. */
+  noTap?: boolean
 }
 
 export const DEMO_APPS: Record<string, DemoApp> = {
@@ -28,6 +30,14 @@ export const DEMO_APPS: Record<string, DemoApp> = {
     tabs: ['Notes', 'Notebooks', 'Review', 'More'],
     notes: ['Notes, tasks, tags', 'Sorted by project', 'Flashcard review', 'Calendar & reminders'],
     accent: '#2457C5',
+  },
+  'Wedding Invitation': {
+    id: 'wedding-invitation',
+    name: 'Wedding Invitation',
+    tabs: ['Invite', 'Welcome', 'Details', 'Attire', 'RSVP', 'Venue'],
+    notes: ['Opening envelope', 'Live countdown', 'When and where', 'Color palette', 'Online RSVP to n8n', 'Maps and Waze'],
+    accent: '#8B5A3C',
+    noTap: true,
   },
 }
 
@@ -95,7 +105,9 @@ export default function PhoneDemo({
             />
           ))}
         </div>
-        <span className={`phone__tap${tapping ? ' is-on' : ''}`} style={{ left: tapX }} aria-hidden="true" />
+        {!app.noTap && (
+          <span className={`phone__tap${tapping ? ' is-on' : ''}`} style={{ left: tapX }} aria-hidden="true" />
+        )}
       </div>
       <span className="phone__notch" aria-hidden="true" />
     </div>

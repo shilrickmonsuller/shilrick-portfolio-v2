@@ -233,3 +233,35 @@
 @media (prefers-reduced-motion: reduce) {
   .appx, .appx__tab, .appx .phone, .appx__stage::before, .appx__tab-bar { animation: none; }
 }
+
+/* Three apps: the card phones get a touch smaller... */
+.pgrid__phones { gap: 8px; }
+.pgrid__phones .phone--sm { --w: 68px; }
+.pgrid__phones .phone:nth-child(3) { margin-top: 10px; }
+
+/* ...and the pop-up becomes three columns, each card stacked: phone on top,
+   info below, so all three still fit on one screen. */
+@media (min-width: 1100px) {
+  .appx-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .appx {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: stretch;
+    align-content: start;
+    gap: 12px;
+    padding: 16px 16px 14px;
+  }
+  .appx__stage { justify-self: center; }
+  .appx .phone { --w: clamp(92px, 14vh, 150px); }
+  .appx-list { margin-top: 8px; }
+  .appx__name { margin-top: 6px; font-size: clamp(18px, 1.3vw, 22px); }
+  .appx__tagline { margin-bottom: 6px; font-size: 12.5px; }
+  .appx__tabs { gap: 1px; }
+  .appx__tab { grid-template-columns: 68px minmax(0, 1fr); padding: 4px 10px; }
+  .appx__tab-name, .appx__tab-note { font-size: 12px; }
+  .appx__foot { margin-top: 8px; }
+  .appx__badge { position: absolute; top: 14px; left: 14px; z-index: 2; }
+}
+/* Short laptop screens: drop the chips so the button stays in view. */
+@media (min-width: 1100px) and (max-height: 820px) {
+  .appx__chips { display: none; }
+}

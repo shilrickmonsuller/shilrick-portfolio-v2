@@ -51,6 +51,20 @@ export const mobileApps: MobileApp[] = [
     badge: 'Web app',
     href: 'https://shilrickmonsuller.github.io/tuonta/',
   },
+  {
+    name: 'Wedding Invitation',
+    tagline: 'Our wedding website.',
+    description: 'A mobile-first invitation with countdown, details, dress code and online RSVP sent to n8n.',
+    imageSrc: '/work/apps/wedding-invitation-1.webp',
+    accentColor: '#8B5A3C',
+    stats: [
+      { value: 'RSVP', label: 'Online, to n8n' },
+      { value: 'Mobile', label: 'First' },
+      { value: 'Pages', label: 'GitHub hosted' },
+    ],
+    badge: 'Website',
+    href: 'https://shilrickmonsuller.github.io/wedding-invitation/',
+  },
 ]
 
 export const webApps: AppProject[] = mobileApps

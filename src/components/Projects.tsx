@@ -127,7 +127,7 @@ export function AppsSection() {
   return (
     <section className="projects projects--apps" aria-label="Web apps" data-reveal>
       <div className="projects__panel">
-        <span className="projects__ext-eyebrow">Web apps built with Claude</span>
+        <span className="projects__ext-eyebrow">Web apps and sites built with Claude</span>
         <ul className="appx-list" role="list">
           {mobileApps.map((app, k) =>
             DEMO_APPS[app.name] ? (

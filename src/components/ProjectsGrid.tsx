@@ -104,6 +104,7 @@ function AppsPreview() {
     <div className="bento__media pgrid__phones" aria-hidden="true">
       <PhoneDemo app={DEMO_APPS['A Day With Jesus']} size="sm" />
       <PhoneDemo app={DEMO_APPS.TUONTA} size="sm" offset={1100} />
+      <PhoneDemo app={DEMO_APPS['Wedding Invitation']} size="sm" offset={600} />
     </div>
   )
 }
@@ -133,7 +134,7 @@ function AIPreview() {
 const PROJECTS: Project[] = [
   { id: 'workflows', cat: 'work', index: '01', title: 'The workflows', desc: 'The n8n canvases behind each project.', Icon: FlowIcon, logos: [N8N], eyebrow: 'Screenshots', Section: AutomationsPanel, span: 2, Preview: WorkflowsPreview },
   { id: 'plan', cat: 'work', index: '02', title: 'Multi-Agent Support & Sales', desc: 'Answers, qualifies and books leads 24/7.', Icon: PlanIcon, logos: [N8N, GHL, OPENAI], eyebrow: 'Project 01', Section: SupportPanel, Preview: PlanPreview },
-  { id: 'apps', cat: 'apps', index: '07', title: 'Web apps', desc: 'A Day With Jesus and TUONTA, built with Claude.', Icon: DeviceIcon, logos: [CLAUDE], eyebrow: 'Web apps', Section: AppsWindow, span: 2, Preview: AppsPreview },
+  { id: 'apps', cat: 'apps', index: '07', title: 'Web apps', desc: 'A Day With Jesus, TUONTA and our wedding site.', Icon: DeviceIcon, logos: [CLAUDE], eyebrow: 'Web apps', Section: AppsWindow, span: 2, Preview: AppsPreview },
   { id: 'ai', cat: 'ai', index: '06', title: 'All AI projects', desc: 'What each one does and runs on.', Icon: SparkIcon, logos: [N8N, OPENAI], eyebrow: 'Projects', Section: AIWindow, span: 2, Preview: AIPreview },
 ]
 
